@@ -8,6 +8,11 @@ from strokeprediction.predict import prediction_model
 views = Blueprint("views", __name__)
 
 
+@views.route("/", methods=["GET"])
+def home():
+    return render_template("index.html")
+
+
 @views.route("/form", methods=["GET", "POST"])
 # @views.route("/", methods=["GET", "POST"])
 # Login roi moi duoc vao Form Page

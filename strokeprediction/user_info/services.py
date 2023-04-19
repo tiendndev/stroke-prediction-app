@@ -1,5 +1,4 @@
 from flask import request, jsonify, flash, redirect, url_for
-import json
 from sqlalchemy import func
 
 from strokeprediction.extension import db
