@@ -2,7 +2,7 @@
 
 {% block title %}Login Page{% endblock %}
 
-{% block content %}
+{% block login %}
 <link rel="stylesheet" href="{{url_for('static', filename='styles/login.css')}}">
 
 <div class="login-container">
@@ -23,6 +23,9 @@
                 <span></span>
                 <span></span>
                 Log in
+            </button>
+            <button class="btn pull-right">
+                <a href="/signup">Signup</a>
             </button>
         </form>
     </div>

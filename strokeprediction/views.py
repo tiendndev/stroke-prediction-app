@@ -50,7 +50,7 @@ def form():
         db.session.commit()
         flash("Note added!", category="success")
 
-    return render_template("index.html", user=current_user)
+    return render_template("form.html", user=current_user)
 
 
 @views.route("/data", methods=["GET", "DELETE", "POST"])
