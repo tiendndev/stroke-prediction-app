@@ -20,6 +20,7 @@
         try {
             const response = await fetch(`${LOCAL_HOST}/patient-management/views`);
             const jsonData = await response.json();
+            console.log(jsonData);
             if (jsonData[0]) {
                 actionBtn.innerHTML = `
             <div class="d-grid gap-2">
@@ -27,7 +28,6 @@
             </div>`
                 showData(jsonData[0])
             }
-            return
         } catch (error) {
             console.log(error);
         }
@@ -103,7 +103,7 @@
                         <th scope="row">Residence type</th>
                         <td>
                             <form action="" method="post">
-                                <input type="text" value="${data.resident_type}" placeholder="${data.resident_type}" name="resident_type">
+                                <input type="text" value="${data.residence_type}" placeholder="${data.residence_type}" name="residence_type">
                                 <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
                             </form>
                         </td>
@@ -142,6 +142,12 @@
                                 <input type="text" value="${data.bmi}" placeholder="${data.bmi}" name="bmi">
                                 <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
                             </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Stroke</th>
+                        <td>
+                            <p>${data.stroke}</p>
                         </td>
                     </tr>
                 </tbody>

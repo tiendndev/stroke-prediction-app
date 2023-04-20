@@ -13,26 +13,20 @@ class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     gender = db.Column(db.String(10))
     age = db.Column(db.Integer)
-    hypertension = db.Column(db.String(10))
+    hypertension = db.Column(db.Integer)
     heart_desease = db.Column(db.String(10))
     ever_married = db.Column(db.String(10))
-    resident_type = db.Column(db.String(10))
+    residence_type = db.Column(db.String(10))
     avg_glucose_level = db.Column(db.Float)
     bmi = db.Column(db.Float)
-
-    # Private = db.Column(db.String(10))
-    # Govt_job = db.Column(db.String(10))
-    # Self_employed = db.Column(db.String(10))
-    # children = db.Column(db.Integer)
-    # Never_worked = db.Column(db.Integer)
-
-    # Old data
-    work_type = db.Column(db.String(10))
+    work_type = db.Column(db.String(20))
     smoking_status = db.Column(db.String(20))
 
+    stroke = db.Column(db.Integer)
+
     def __init__(self, fullname, user_id, gender, age, hypertension,
-                 heart_desease, ever_married, work_type, resident_type,
-                 avg_glucose_level, bmi, smoking_status):
+                 heart_desease, ever_married, work_type, residence_type,
+                 avg_glucose_level, bmi, smoking_status, stroke):
         self.fullname = fullname
         self.user_id = user_id
         self.gender = gender
@@ -41,10 +35,11 @@ class Note(db.Model):
         self.heart_desease = heart_desease
         self.ever_married = ever_married
         self.work_type = work_type
-        self.resident_type = resident_type
+        self.residence_type = residence_type
         self.avg_glucose_level = avg_glucose_level
         self.bmi = bmi
         self.smoking_status = smoking_status
+        self.stroke = stroke
 
 
 class User(db.Model, UserMixin):

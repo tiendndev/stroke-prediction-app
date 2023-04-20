@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from .models import Note, User
 from . import db
 from strokeprediction.predict import prediction_model
+from strokeprediction.KnnModel.randomForest import predict_Stroke
 
 views = Blueprint("views", __name__)
 
@@ -29,11 +30,33 @@ def form():
         hypertension = request.form.get("hypertension")
         heart_desease = request.form.get("heart_desease")
         ever_married = request.form.get("ever_married")
-        resident_type = request.form.get("resident_type")
+        residence_type = request.form.get("residence_type")
         work_type = request.form.get("work_type")
         avg_glucose_level = request.form.get("avg_glucose_level")
         bmi = request.form.get("bmi")
         smoking_status = request.form.get("smoking_status")
+
+        gd = 0 if gender == "male" else 1
+        rsd_type = 1 if residence_type == "urban" else 0
+        private = 0
+        Govt_job = 0
+        Self_employed = 0
+        children = 0
+        Never_worked = 0
+        match work_type:
+            case "private":
+                private = 1
+            case "govt_job":
+                Govt_job = 1
+            case "self_employed":
+                Self_employed = 1
+            case "children":
+                children = 1
+            case "never_worked":
+                Never_worked = 1
+
+        stroke = predict_Stroke(gd, age, hypertension, heart_desease,
+                                ever_married, rsd_type, avg_glucose_level, bmi, private, Govt_job, Self_employed, children, Never_worked)
 
         # Lay data va user_id cua user (xem trong models.py - class user)
         new_note = Note(
@@ -44,11 +67,12 @@ def form():
             hypertension=hypertension,
             heart_desease=heart_desease,
             ever_married=ever_married,
-            resident_type=resident_type,
+            residence_type=residence_type,
             work_type=work_type,
             avg_glucose_level=avg_glucose_level,
             bmi=bmi,
-            smoking_status=smoking_status
+            smoking_status=smoking_status,
+            stroke=stroke
         )
         # Them vao databse
         db.session.add(new_note)
@@ -68,7 +92,7 @@ def RetrivePatient():
         heart_desease = request.form.get("heart_desease")
         ever_married = request.form.get("ever_married")
         work_type = request.form.get("work_type")
-        resident_type = request.form.get("resident_type")
+        residence_type = request.form.get("residence_type")
         avg_glucose_level = request.form.get("avg_glucose_level")
         bmi = request.form.get("bmi")
         smoking_status = request.form.get("smoking_status")
@@ -89,8 +113,8 @@ def RetrivePatient():
                     symptom.ever_married = ever_married
                 elif work_type:
                     symptom.work_type = work_type
-                elif resident_type:
-                    symptom.resident_type = resident_type
+                elif residence_type:
+                    symptom.residence_type = residence_type
                 elif avg_glucose_level:
                     symptom.avg_glucose_level = avg_glucose_level
                 elif bmi:
@@ -117,3 +141,8 @@ def VGG16():
         img_url = load_predict[1]
 
     return render_template("image.html", user=current_user, prediction=prediction, img_url=img_url)
+
+
+@views.route("/ngrok", methods=["GET", "POST"])
+def ngrok():
+    return render_template("ngrok.html", user=current_user)

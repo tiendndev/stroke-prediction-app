@@ -12,7 +12,7 @@ symptoms_schema = SymptomSchema(many=True)
 def add_symptom_service():
     data = request.json
     if (data and ("user_id" in data) and ("gender" in data) and ("age" in data) and ("hypertension" in data)
-        and ("heart_desease" in data) and ("ever_married" in data) and ("work_type" in data) and ("resident_type") and
+        and ("heart_desease" in data) and ("ever_married" in data) and ("work_type" in data) and ("residence_type") and
             ("avg_glucose_level" in data) and ("bmi" in data) and ("smoking_status" in data)):
 
         id = data["id"]
@@ -25,13 +25,13 @@ def add_symptom_service():
         heart_desease = data["heart_desease"]
         ever_married = data["ever_married"]
         work_type = data["work_type"]
-        resident_type = data["resident_type"]
+        residence_type = data["residence_type"]
         avg_glucose_level = data["avg_glucose_level"]
         bmi = data["bmi"]
         smoking_status = data["smoking_status"]
         try:
             new_book = Note(id, fullname, user_id, gender, age, hypertension, heart_desease, ever_married,
-                            work_type, resident_type, avg_glucose_level, bmi, smoking_status)
+                            work_type, residence_type, avg_glucose_level, bmi, smoking_status)
             db.session.add(new_book)
             db.session.commit()
             return jsonify({"message": "Add success!"}), 200
