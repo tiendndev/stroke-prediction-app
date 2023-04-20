@@ -13,12 +13,12 @@
 
 
 <script type="module">
-    import { VIEW_NGROK_API, DELETE_NGROK_API, VIEW_LOCAL_API, DELETE_LOCAL_API } from "../static/api.js"
+    import { NGROK_HOST, LOCAL_HOST } from "../static/api.js"
 
     const actionBtn = document.querySelector(".action-btn")
     async function logJSONData() {
         try {
-            const response = await fetch(`${VIEW_LOCAL_API}`);
+            const response = await fetch(`${LOCAL_HOST}/patient-management/views`);
             const jsonData = await response.json();
             if (jsonData[0]) {
                 actionBtn.innerHTML = `
@@ -152,7 +152,7 @@
         /* Delete note */
         const deleteBtn = document.querySelector(".delete")
         const deleteNote = () => {
-            fetch(`${DELETE_LOCAL_API}`, {
+            fetch(`${LOCAL_HOST}/patient-management/delete`, {
                 method: "DELETE",
             }).then((res) => (window.location.href = "/data"));
         };
