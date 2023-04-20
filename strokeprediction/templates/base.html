@@ -26,11 +26,11 @@
                 <i class='bx bx-menu pl-xl-4' id="header-toggle"></i>
             </div>
             <div class="header_img">
-                <img src="{{url_for('static', filename='logo.jpeg')}}" alt="">
+                <img src="{{url_for('static', filename='user.jpeg')}}" alt="">
             </div>
         </header>
         <!-- Flash message -->
-        {% with messages = get_flashed_messages(with_categories = true) %}
+        <!--     {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
         {% for cat, mess in messages %}
         {% if cat == "error" %}
@@ -50,13 +50,13 @@
         {% endif %}
         {% endfor %}
         {% endif %}
-        {% endwith %}
+        {% endwith %} -->
 
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
                 <div>
                     <!-- Logo -->
-                    <a href="#" class="nav_logo">
+                    <a href="/" class="nav_logo">
                         <i class='bx bx-layer nav_logo-icon'></i>
                         <span class="nav_logo-name">StrokePrediction</span>
                     </a>
@@ -98,27 +98,6 @@
     {% else %}
     {% block login %}{% endblock %}
     {% endif %}
-
-    <!-- Navbar -->
-    <!--     <nav class="navbar navbar-expand-lg navbar-dark bg-dark col-md-12 shadow-sm">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-            <div class="navbar-nav">
-                {% if user.is_authenticated %}
-                <a class="nav-item nav-link" id="form-page" href="/form">Form</a>
-                <a class="nav-item nav-link" id="dataList" href="/data">Data</a>
-                <a class="nav-item nav-link" id="image" href="/image">Image</a>
-                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                {% else %}
-                <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                <a class="nav-item nav-link" id="signUp" href="/signup">Sign Up</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav> -->
-
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

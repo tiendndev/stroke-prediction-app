@@ -110,7 +110,10 @@ def RetrivePatient():
 @views.route("/image", methods=["POST", "GET"])
 def VGG16():
     prediction = None
+    img_url = None
     if request.method == "POST":
-        prediction = prediction_model()
+        load_predict = prediction_model()
+        prediction = load_predict[0]
+        img_url = load_predict[1]
 
-    return render_template("image.html", user=current_user, prediction=prediction)
+    return render_template("image.html", user=current_user, prediction=prediction, img_url=img_url)

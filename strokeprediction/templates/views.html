@@ -6,18 +6,19 @@
 
 
 <div class="container">
-    <h1 class="mt-2" align="center" class="">Datalist Page</h1>
+    <h2 class="mt-5 mb-sm-5" class="">Datalist</h2>
     <div class="data-container"></div>
     <div class="action-btn"></div>
 </div>
 
 
-<script>
-    const actionBtn = document.querySelector(".action-btn")
+<script type="module">
+    import { VIEW_NGROK_API, DELETE_NGROK_API, VIEW_LOCAL_API, DELETE_LOCAL_API } from "../static/api.js"
 
+    const actionBtn = document.querySelector(".action-btn")
     async function logJSONData() {
         try {
-            const response = await fetch("http://127.0.0.1:5000/patient-management/views");
+            const response = await fetch(`${VIEW_LOCAL_API}`);
             const jsonData = await response.json();
             if (jsonData[0]) {
                 actionBtn.innerHTML = `
@@ -151,7 +152,7 @@
         /* Delete note */
         const deleteBtn = document.querySelector(".delete")
         const deleteNote = () => {
-            fetch("http://127.0.0.1:5000/patient-management/delete", {
+            fetch(`${DELETE_LOCAL_API}`, {
                 method: "DELETE",
             }).then((res) => (window.location.href = "/data"));
         };
