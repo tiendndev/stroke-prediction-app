@@ -8,26 +8,21 @@ content %}
 </style>
 
 <div class="container">
-   <!-- Begin page content -->
-   <main class="flex-shrink-0">
-      <div class="container">
-         <br />
-         <br />
-         <h1 class="mt-5">Đặt câu hỏi để được nhận tư vấn nhé ^^</h1>
+   <div class="row">
+      <h2 class="mt-lg-5 mb-sm-5">I'm a doctorbot, feel free to let me know about your question</h2>
+   </div>
 
-         <!-- Question and Answer -->
-         <div id="list-group" class="list-group w-auto"></div>
+   <!-- Question and Answer -->
+   <div id="list-group" class="list-group w-auto"></div>
 
-         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="chat-input" />
-            <div class="input-group-append">
-               <button id="gpt-button" class="btn btn-primary">
-                  <i class="fa fa-paper-plane"></i>
-               </button>
-            </div>
-         </div>
+   <div class="input-group mb-3 col-6">
+      <input type="text" class="form-control" id="chat-input" placeholder="Enter your questions here..." />
+      <div class="input-group-append">
+         <button id="gpt-button" class="btn btn-primary">
+            <i class="fa fa-paper-plane"></i>
+         </button>
       </div>
-   </main>
+   </div>
 </div>
 
 <script>

@@ -10,32 +10,42 @@
     }
 </style>
 
-<div class="container height-100">
-    <h2 class="mt-5 mb-sm-2 ml-sm-4">Upload Image and Predict</h2>
-    <form class="p-3 text-center img-form" action="" method="post" enctype="multipart/form-data" name="file">
-        <div class="container">
-            <div class="input-group mb-3">
+<div class="container">
+    
+    <form class="img-form" action="" method="post" enctype="multipart/form-data" name="file">
+        <div class="row">
+            <h2 class="mt-lg-5 mb-sm-5">Upload Image and Predict</h2>
+        </div>
+        <div class="row">
+            <div class="input-group mb-3 col-6">
                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                <input class="form-control" type="file" name="file" id="inputGroupFile01" />
+                <input class="form-control col-6" type="file" name="file" id="inputGroupFile01" />
+                <button type="submit" class="btn btn-primary">Predict Image</button>
             </div>
-
-            {% if img_url %}
-            <img src="{{url_for('static', filename='')+img_url}}" class="img-thumbnail col-md-6 pull-left"
+            
+            <div class="row">
+                {% if img_url %}
+                <img src="{{url_for('static', filename='')+img_url}}" class="img-thumbnail col-md-6"
                 align="center" alt="predicted img">
-            {% endif %}
-            <button type="submit" class="btn btn-primary mt-3 mb-4 pull-letf col-md-3">Predict Image</button>
-
-            {% if prediction %}
-            <h2 class="text-center col-md-6 pull-left">{{prediction}}</h2>
-            {% endif %}
+                {% endif %}
+                
+                
+                {% if prediction %}
+                <h2 class="col-md-6 text-center">{{prediction}}</h2>
+                {% endif %}
+            </div>
         </div>
     </form>
 </div>
+
 
 <script type="module">
     import { HOST } from "../static/constant.js"
     const form = document.querySelector(".img-form")
     console.log(form);
     form.setAttribute("action", `${HOST}/image`)
+
+    function handleForm(event) { event.preventDefault(); } 
+    form.addEventListener('load', handleForm);
 </script>
 {% endblock %}
