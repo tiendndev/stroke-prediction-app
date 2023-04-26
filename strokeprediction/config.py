@@ -16,7 +16,7 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     # SECRET_KEY = "this-is-a-super-secret-key"
-    OPENAI_KEY = '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'
+    OPENAI_KEY = os.environ.get("OPENAI_KEY")
 
 
 config = {

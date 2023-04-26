@@ -1,6 +1,12 @@
 {% extends "base.html" %} {% block title %}Chat with us{% endblock %} {% block
 content %}
 
+<style>
+   button#gpt-button {
+      width: 84px;
+   }
+</style>
+
 <div class="container">
    <!-- Begin page content -->
    <main class="flex-shrink-0">
@@ -16,7 +22,7 @@ content %}
             <input type="text" class="form-control" id="chat-input" />
             <div class="input-group-append">
                <button id="gpt-button" class="btn btn-primary">
-                  Ask ChatGPT
+                  <i class="fa fa-paper-plane"></i>
                </button>
             </div>
          </div>

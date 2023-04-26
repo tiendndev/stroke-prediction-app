@@ -1,3 +1,9 @@
 /strokeprediction/h5
 /strokeprediction/static/img
+
 strokeprediction/KnnModel/healthcare-dataset-stroke-data.csv
+
+strokeprediction/.env
+.env
+strokeprediction\.env
+/.env
