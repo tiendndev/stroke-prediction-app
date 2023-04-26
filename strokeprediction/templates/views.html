@@ -1,177 +1,145 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}Modified Page{% endblock %}
+{% block title %}Modified Page{% endblock %} 
 
-{% block content %}
-
+{% blockcontent %}
 
 <div class="container">
-    <h2 class="mt-5 mb-sm-5" class="">Datalist</h2>
-    <div class="data-container"></div>
-    <div class="action-btn"></div>
+   <h2 class="mt-lg-5 mb-sm-5" class="">Your data</h2>
+   <div class="data-container">
+      <div class="table-responsive">
+         <table class="table table-hover">
+            <thead class="thead-dark">
+               <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Value</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <th scope="row">Fullname</th>
+                  <td id="fullname"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Age</th>
+                  <td id="age"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Gender</th>
+                  <td id="gender"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Hypertension</th>
+                  <td id="hypertension"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Heart desease</th>
+                  <td id="heart_desease"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Ever married</th>
+                  <td id="ever_married"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Residence type</th>
+                  <td id="residence_type"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Work type</th>
+                  <td id="work_type"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Smoking status</th>
+                  <td id="smoking_status"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Avg glucose level</th>
+                  <td id="avg_glucose_level"></td>
+               </tr>
+               <tr>
+                  <th scope="row">BMI</th>
+                  <td id="bmi"></td>
+               </tr>
+               <tr>
+                  <th scope="row">Stroke</th>
+                  <td id="stroke"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <div class="action-btn"></div>
 </div>
 
-
 <script type="module">
-    import { HOST } from "../static/constant.js"
+   import { HOST } from '../static/constant.js';
 
-    const actionBtn = document.querySelector(".action-btn")
-    async function logJSONData() {
-        try {
-            const response = await fetch(`${HOST}/patient-management/views`);
-            const jsonData = await response.json();
-            console.log(jsonData);
-            if (jsonData[0]) {
-                actionBtn.innerHTML = `
-            <div class="d-grid gap-2">
-                <button type="button" class="btn btn-danger pull-right mr-3 delete">Delete</button>
-            </div>`
-                showData(jsonData[0])
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    logJSONData()
+   const actionBtn = document.querySelector('.action-btn');
+   async function logJSONData() {
+      try {
+         const response = await fetch(`${HOST}/patient-management/views`);
+         const jsonData = await response.json();
+         console.log(jsonData);
+         if (jsonData[0]) {
+            actionBtn.innerHTML = `
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-danger pull-right mr-3 delete">Delete</button>
+                    </div>`;
+            showData(jsonData[0]);
+         }
+      } catch (error) {
+         console.log(error);
+      }
+   }
+   logJSONData();
 
-    const showData = (data) => {
-        document.querySelector('.data-container').innerHTML = `
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Fullname</th>
-                        <td>
-                            <form action="" method="POST">
-                                <input type="text" value="${data.fullname}" placeholder="${data.fullname}" name="fullname">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Age</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.age}" placeholder="${data.age}" name="age">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Gender</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.gender}" placeholder="${data.gender}" name="gender">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Hypertension</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.hypertension}" placeholder="${data.hypertension}" name="hypertension">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Heart desease</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.heart_desease}" placeholder="${data.heart_desease}" name="heart_desease">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Ever married</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.ever_married}" placeholder="${data.ever_married}" name="ever_married">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Residence type</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.residence_type}" placeholder="${data.residence_type}" name="residence_type">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Work type</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.work_type}" placeholder="${data.work_type}" name="work_type">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Smoking status</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.smoking_status}" placeholder="${data.smoking_status}" name="smoking_status">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Avg glucose level</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.avg_glucose_level}" placeholder="${data.avg_glucose_level}" name="avg_glucose_level">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">BMI</th>
-                        <td>
-                            <form action="" method="post">
-                                <input type="text" value="${data.bmi}" placeholder="${data.bmi}" name="bmi">
-                                <button type="submit" class="btn btn-outline-success pull-right update">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Stroke</th>
-                        <td>
-                            <p>${data.stroke}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>`
+   const $ = document.querySelector.bind(document);
+   const fullname = $('td#fullname');
+   const age = $('td#age');
+   const gender = $('td#gender');
+   const hypertension = $('td#hypertension');
+   const heart_desease = $('td#heart_desease');
+   const ever_married = $('td#ever_married');
+   const residence_type = $('td#residence_type');
+   const work_type = $('td#work_type');
+   const smoking_status = $('td#smoking_status');
+   const avg_glucose_level = $('td#avg_glucose_level');
+   const bmi = $('td#bmi');
+   const stroke = $('td#stroke');
 
+   const showData = (data) => {
+      if (data) {
+         fullname.innerHTML = `${data.fullname}`;
+         age.innerHTML = `${data.age}`;
+         gender.innerHTML = `${data.gender}`;
+         hypertension.innerHTML = `${data.hypertension ? 'Yes' : 'No'}`;
+         heart_desease.innerHTML = `${data.heart_desease ? 'Yes' : 'No'}`;
+         ever_married.innerHTML = `${data.ever_married ? 'Yes' : 'No'}`;
+         residence_type.innerHTML = `${data.residence_type}`;
+         work_type.innerHTML = `${data.work_type}`;
+         smoking_status.innerHTML = `${data.smoking_status}`;
+         avg_glucose_level.innerHTML = `${data.avg_glucose_level}`;
+         bmi.innerHTML = `${data.bmi}`;
+         stroke.innerHTML = `${
+            data.stroke ? 'You are stroke ❗' : 'You are normal ❤️'
+         }`;
 
-        /* Delete note */
-        const deleteBtn = document.querySelector(".delete")
-        const deleteNote = () => {
+         const deleteBtn = $('.delete');
+         const deleteNote = () => {
             fetch(`${HOST}/patient-management/delete`, {
-                method: "DELETE",
-            }).then((res) => (window.location.href = "/data"));
-        };
-        deleteBtn.onclick = () => {
-            if (confirm("Do you want to delete all?")) {
-                console.log("You press yes");
-                deleteNote()
+               method: 'DELETE',
+            }).then((res) => (window.location.href = '/data'));
+         };
+         deleteBtn.onclick = () => {
+            if (confirm('Do you want to delete all?')) {
+               console.log('You press yes');
+               deleteNote();
+            } else {
+               console.log('You press cancel');
             }
-            else {
-                console.log("You press cancel");
-            }
-        }
-    }
+         };
+      }
+   };
 </script>
 
 {% endblock %}

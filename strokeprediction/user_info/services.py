@@ -68,7 +68,7 @@ def delete_symptom_by_id_service():
         try:
             db.session.delete(symptom)
             db.session.commit()
-            return "symptom is deleted"
+            return jsonify({"message": "symptom is deleted"}), 200
         except IndentationError:
             db.session.rollback()
             return jsonify({"message": "Can not delete symptom!"}), 400

@@ -70,6 +70,7 @@ a:hover {
 }
 
 .login-box .login-title {
+    /* overflow-y: hidden; */
     color: #03e9f4;
 }
 

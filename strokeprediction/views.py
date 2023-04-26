@@ -87,52 +87,8 @@ def form():
     return render_template("form.html", user=current_user)
 
 
-@views.route("/data", methods=["GET", "DELETE", "POST"])
+@views.route("/data", methods=["GET", "DELETE"])
 def RetrivePatient():
-    if request.method == "POST":
-        fullname = request.form.get("fullname")
-        age = request.form.get("age")
-        gender = request.form.get("gender")
-        hypertension = request.form.get("hypertension")
-        heart_desease = request.form.get("heart_desease")
-        ever_married = request.form.get("ever_married")
-        work_type = request.form.get("work_type")
-        residence_type = request.form.get("residence_type")
-        avg_glucose_level = request.form.get("avg_glucose_level")
-        bmi = request.form.get("bmi")
-        smoking_status = request.form.get("smoking_status")
-        symptom = Note.query.get(1)
-        if symptom:
-            try:
-                if fullname:
-                    symptom.fullname = fullname
-                elif age:
-                    symptom.age = age
-                elif gender:
-                    symptom.gender = gender
-                elif hypertension:
-                    symptom.hypertension = hypertension
-                elif heart_desease:
-                    symptom.heart_desease = heart_desease
-                elif ever_married:
-                    symptom.ever_married = ever_married
-                elif work_type:
-                    symptom.work_type = work_type
-                elif residence_type:
-                    symptom.residence_type = residence_type
-                elif avg_glucose_level:
-                    symptom.avg_glucose_level = avg_glucose_level
-                elif bmi:
-                    symptom.bmi = bmi
-                elif smoking_status:
-                    symptom.smoking_status = smoking_status
-                db.session.commit()
-            except IndentationError:
-                db.session.rollback()
-                return jsonify({"message": "Can not update symptom!"}), 400
-        else:
-            return jsonify({"message": "Not found symptom!"}), 400
-
     return render_template("views.html", user=current_user)
 
 

@@ -39,91 +39,91 @@
 
    <body>
       {% if user.is_authenticated %}
-      <!-- Sidebar -->
-      <div class="side-bar-bs" id="body-pd">
-         <!-- Header -->
-         <header class="header" id="header">
-            <div class="header_toggle">
-               <i class="bx bx-menu pl-xl-4" id="header-toggle"></i>
-            </div>
-            <div class="header_img">
-               <img src="{{url_for('static', filename='user.jpeg')}}" alt="" />
-            </div>
-         </header>
-
-         <div class="l-navbar" id="nav-bar">
-            <nav class="nav">
-               <div>
-                  <!-- Logo -->
-                  <a href="#" class="nav_logo">
-                     <i class="bx bx-layer nav_logo-icon"></i>
-                     <span class="nav_logo-name">StrokePrediction</span>
-                  </a>
-                  <!-- Navlist -->
-                  <div class="nav_list">
-                     <a href="/form" class="nav_link">
-                        <i class="bx bx-grid-alt nav_icon"></i>
-                        <span class="nav_name">Dashboard</span>
-                     </a>
-                     <a href="/data" class="nav_link">
-                        <i class="bx bx-message-square-detail nav_icon"></i>
-                        <span class="nav_name">Data</span>
-                     </a>
-                     <a href="/image" class="nav_link">
-                        <i class="bx bx-folder nav_icon"></i>
-                        <span class="nav_name">Files</span>
-                     </a>
-                     <a href="/chatbot" class="nav_link">
-                        <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
-                        <span class="nav_name">Chat with us</span>
-                     </a>
-                  </div>
+         <!-- Sidebar -->
+         <div class="side-bar-bs" id="body-pd">
+            <!-- Header -->
+            <header class="header" id="header">
+               <div class="header_toggle">
+                  <i class="bx bx-menu pl-xl-4" id="header-toggle"></i>
                </div>
-               <!-- Logout -->
-               <a href="/logout" class="nav_link">
-                  <i class="bx bx-log-out nav_icon"></i>
-                  <span class="nav_name">SignOut</span>
-               </a>
-            </nav>
-         </div>
+               <div class="header_img">
+                  <img src="{{url_for('static', filename='user.jpeg')}}" alt="" />
+               </div>
+            </header>
 
-         <!-- Flash message -->
-         {% with messages = get_flashed_messages(with_categories = true) %} 
-         {% if messages %} 
-         {% for cat, mess in messages %} 
-         {% if cat == "error" %}
-         <div
-            class="alert alert-danger alter-dismissable fade show container"
-            role="alert"
-         >
-            {{ mess }}
-            <button type="button" class="close" data-dismiss="alert">
-               <span aria-hidden="true" class="close-btn">&times;</span>
-            </button>
-         </div>
-         {% else %}
-         <div
-            class="alert alert-success alter-dismissable fade show"
-            role="alert"
-         >
-            {{ mess }}
-            <button type="button" class="close" data-dismiss="alert">
-               <span aria-hidden="true" class="close-btn">&times;</span>
-            </button>
-         </div>
-         {% endif %} 
-         {% endfor %} 
-         {% endif %} 
-         {% endwith %}
+            <div class="l-navbar" id="nav-bar">
+               <nav class="nav">
+                  <div>
+                     <!-- Logo -->
+                     <a href="#" class="nav_logo">
+                        <i class="bx bx-layer nav_logo-icon"></i>
+                        <span class="nav_logo-name">StrokePrediction</span>
+                     </a>
+                     <!-- Navlist -->
+                     <div class="nav_list">
+                        <a href="/form" class="nav_link">
+                           <i class="bx bx-grid-alt nav_icon"></i>
+                           <span class="nav_name">Dashboard</span>
+                        </a>
+                        <a href="/data" class="nav_link">
+                           <i class="bx bx-message-square-detail nav_icon"></i>
+                           <span class="nav_name">Data</span>
+                        </a>
+                        <a href="/image" class="nav_link">
+                           <i class="bx bx-folder nav_icon"></i>
+                           <span class="nav_name">Files</span>
+                        </a>
+                        <a href="/chatbot" class="nav_link">
+                           <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
+                           <span class="nav_name">Chat with us</span>
+                        </a>
+                     </div>
+                  </div>
+                  <!-- Logout -->
+                  <a href="/logout" class="nav_link">
+                     <i class="bx bx-log-out nav_icon"></i>
+                     <span class="nav_name">SignOut</span>
+                  </a>
+               </nav>
+            </div>
 
-         <!--Container Main start-->
-         <!-- Content -->
-         {% block content %} {% endblock %}
-         <div class="bg-light"></div>
-      </div>
-      <!-- {% else %} 
-      {% block login %}
-      {% endblock %}  -->
+            <!-- Flash message -->
+            {% with messages = get_flashed_messages(with_categories = true) %} 
+               {% if messages %} 
+                  {% for cat, mess in messages %} 
+                     {% if cat == "error" %}
+                     <div
+                        class="alert alert-danger alter-dismissable fade show container"
+                        role="alert"
+                     >
+                        {{ mess }}
+                        <button type="button" class="close" data-dismiss="alert">
+                           <span aria-hidden="true" class="close-btn">&times;</span>
+                        </button>
+                     </div>
+                     {% else %}
+                     <div
+                        class="alert alert-success alter-dismissable fade show"
+                        role="alert"
+                     >
+                        {{ mess }}
+                        <button type="button" class="close" data-dismiss="alert">
+                           <span aria-hidden="true" class="close-btn">&times;</span>
+                        </button>
+                     </div>
+                     {% endif %} 
+                  {% endfor %} 
+               {% endif %} 
+            {% endwith %}
+
+            <!--Container Main start-->
+            <!-- Content -->
+            {% block content %} {% endblock %}
+            <div class="bg-light"></div>
+         </div>
+      {% else %} 
+         {% block login %}
+         {% endblock %} 
       {% endif %}
 
       <script
