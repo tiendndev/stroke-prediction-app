@@ -7,3 +7,20 @@ load_dotenv()
 SECRET_KEY = os.environ.get("KEY")
 SQLALCHEMY_DATABASE_URI = os.environ.get("DB_URL")
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+class Config(object):
+    DEBUG = True
+    TESTING = False
+
+
+class DevelopmentConfig(Config):
+    # SECRET_KEY = "this-is-a-super-secret-key"
+    OPENAI_KEY = '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'
+
+
+config = {
+    'development': DevelopmentConfig,
+    'testing': DevelopmentConfig,
+    'production': DevelopmentConfig
+}

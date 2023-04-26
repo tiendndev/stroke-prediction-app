@@ -12,8 +12,7 @@
 
 <div class="container height-100">
     <h2 class="mt-5 mb-sm-2 ml-sm-4">Upload Image and Predict</h2>
-    <form class="p-3 text-center" action="http://127.0.0.1:5000/image" method="post" enctype="multipart/form-data"
-        name="file">
+    <form class="p-3 text-center img-form" action="" method="post" enctype="multipart/form-data" name="file">
         <div class="container">
             <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupFile01">Upload</label>
@@ -32,4 +31,11 @@
         </div>
     </form>
 </div>
+
+<script type="module">
+    import { HOST } from "../static/constant.js"
+    const form = document.querySelector(".img-form")
+    console.log(form);
+    form.setAttribute("action", `${HOST}/image`)
+</script>
 {% endblock %}

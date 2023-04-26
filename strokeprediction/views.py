@@ -5,8 +5,13 @@ from .models import Note, User
 from . import db
 from strokeprediction.predict import prediction_model
 from strokeprediction.KnnModel.randomForest import predict_Stroke
+from strokeprediction import aiapi
+from strokeprediction import config
 
 views = Blueprint("views", __name__)
+
+# Config
+# views.config.from_object(config.config['development'])
 
 
 @views.route("/", methods=["GET"])
@@ -143,6 +148,12 @@ def VGG16():
     return render_template("image.html", user=current_user, prediction=prediction, img_url=img_url)
 
 
-@views.route("/ngrok", methods=["GET", "POST"])
-def ngrok():
-    return render_template("ngrok.html", user=current_user)
+@views.route("/chatbot", methods=["GET", "POST"])
+def gpt():
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+
+        res = {}
+        res['answer'] = aiapi.generateChatResponse(prompt)
+        return jsonify(res), 200
+    return render_template("gpt.html", user=current_user, **locals())
