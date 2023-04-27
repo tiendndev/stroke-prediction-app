@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, session
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, current_user, logout_user
 
@@ -58,13 +58,13 @@ def signup():
             try:
                 db.session.add(new_user)
                 db.session.commit()
-                flash("User, created!", category="success")
+                # flash("User created!", category="success")
 
                 # Tu dong login sau khi tao tai khoan thanh cong
                 login_user(user, remember=True)
                 return redirect(url_for("views.form"))
             except:
-                "Error"
+                return jsonify({"message": "Error"}), 400
 
     return render_template("signup.html", user=current_user)
 

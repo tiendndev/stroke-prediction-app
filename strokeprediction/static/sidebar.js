@@ -24,13 +24,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
    /*===== LINK ACTIVE =====*/
    const linkColor = document.querySelectorAll(".nav_link");
-   const linkAttr = document.querySelector(".nav_link").getAttribute("href");
+   let current_route = window.location.href.slice(21,)
+   let ngrok_route = window.location.href.slice(39,)
 
-   function colorLink() {
-      if (linkAttr == "/form") {
-         linkColor.forEach((l) => l.classList.remove("active"));
-         this.classList.add("active");
+   linkColor.forEach((l) => {
+      switch(current_route) {
+         case '/data':
+            l.classList.remove('active')
+            linkColor[1].classList.add('active');
+            break;
+         case '/image':
+            l.classList.remove('active')
+            linkColor[2].classList.add('active');
+            break;
+         case '/chatbot':
+            l.classList.remove('active')
+            linkColor[3].classList.add('active');
+            break;
+         default:
+            l.classList.remove('active')
+            linkColor[0].classList.add('active');
+            break;
       }
-   }
-   linkColor.forEach((l) => l.addEventListener("load", colorLink));
+   });
+
 });

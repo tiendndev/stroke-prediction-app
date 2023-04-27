@@ -1,8 +1,7 @@
 from flask import Flask
 import os
 from dotenv import load_dotenv
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_manager, LoginManager
+from flask_login import LoginManager
 from datetime import timedelta
 
 from .extension import ma, db
@@ -17,7 +16,7 @@ def create_database(app):
     if not os.path.exists("strokeprediction/" + DB_NAME):
         with app.app_context():
             db.create_all()
-        print("Created DB")
+        print("Created Database")
 
 def create_app():
     app = Flask(__name__)

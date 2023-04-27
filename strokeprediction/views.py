@@ -1,17 +1,13 @@
 from flask import Blueprint, jsonify, render_template, flash, request, redirect, url_for
 from flask_login import login_required, current_user
 
-from .models import Note, User
+from .models import Note
 from . import db
 from strokeprediction.predict import prediction_model
-from strokeprediction.KnnModel.randomForest import predict_Stroke
+from strokeprediction.RandomForestModel.randomForest import predict_Stroke
 from strokeprediction import aiapi
-from strokeprediction import config
 
 views = Blueprint("views", __name__)
-
-# Config
-# views.config.from_object(config.config['development'])
 
 
 @views.route("/", methods=["GET"])
@@ -20,7 +16,6 @@ def home():
 
 
 @views.route("/form", methods=["GET", "POST"])
-# @views.route("/", methods=["GET", "POST"])
 # Login roi moi duoc vao Form Page
 @login_required
 def form():

@@ -2,7 +2,13 @@
 
 {% block title %}Modified Page{% endblock %} 
 
-{% blockcontent %}
+{% block content %}
+
+<style>
+   /* td#stroke {
+      background-color: var(--bs-danger-bg-subtle);
+   } */
+</style>
 
 <div class="container">
    <h2 class="mt-lg-5 mb-sm-5" class="">Your data</h2>
@@ -79,11 +85,10 @@
       try {
          const response = await fetch(`${HOST}/patient-management/views`);
          const jsonData = await response.json();
-         console.log(jsonData);
          if (jsonData[0]) {
             actionBtn.innerHTML = `
                     <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-danger pull-right mr-3 delete">Delete</button>
+                        <button type="button" class="btn btn-danger pull-right mr-3 delete">Reset</button>
                     </div>`;
             showData(jsonData[0]);
          }
@@ -120,9 +125,12 @@
          smoking_status.innerHTML = `${data.smoking_status}`;
          avg_glucose_level.innerHTML = `${data.avg_glucose_level}`;
          bmi.innerHTML = `${data.bmi}`;
-         stroke.innerHTML = `${
-            data.stroke ? 'You are stroke ❗' : 'You are normal ❤️'
+         stroke.innerText = `${
+            data.stroke ? 'You are at risk of having a stroke ❗' : 'You are normal, keep to stay healthy ❤️'
          }`;
+         
+         data.stroke? stroke.style.backgroundColor = 'var(--bs-danger-bg-subtle)' : stroke.style.backgroundColor = 'var(--bs-success-bg-subtle)'
+         
 
          const deleteBtn = $('.delete');
          const deleteNote = () => {
@@ -140,6 +148,7 @@
          };
       }
    };
+   
 </script>
 
 {% endblock %}

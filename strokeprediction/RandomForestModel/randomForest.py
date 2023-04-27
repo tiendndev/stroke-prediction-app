@@ -3,7 +3,7 @@ import numpy as np
 
 
 def predict_Stroke(gender, age, hypertension, heart_disease, ever_married, Residence_type, avg_glucose_level, bmi, Private, Govt_job, Self_employed, children, Never_worked):
-    loaded_rfc = joblib.load(r"strokeprediction\KnnModel\random_forest.joblib")
+    loaded_rfc = joblib.load(r"strokeprediction\RandomForestModel\random_forest.joblib")
     x = np.zeros(13)
     x[0] = gender
     x[1] = age

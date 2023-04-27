@@ -57,24 +57,24 @@
                      <!-- Logo -->
                      <a href="#" class="nav_logo">
                         <i class="bx bx-layer nav_logo-icon"></i>
-                        <span class="nav_logo-name">StrokePrediction</span>
+                        <span class="nav_logo-name">Dashboard</span>
                      </a>
                      <!-- Navlist -->
                      <div class="nav_list">
                         <a href="/form" class="nav_link">
-                           <i class="bx bx-grid-alt nav_icon"></i>
-                           <span class="nav_name">Dashboard</span>
+                           <i class="bx bx-file nav_icon"></i>
+                           <span class="nav_name">Fill information</span>
                         </a>
                         <a href="/data" class="nav_link">
-                           <i class="bx bx-message-square-detail nav_icon"></i>
-                           <span class="nav_name">Data</span>
+                           <i class="bx bx-info-circle nav_icon"></i>
+                           <span class="nav_name">Get data</span>
                         </a>
                         <a href="/image" class="nav_link">
-                           <i class="bx bx-folder nav_icon"></i>
-                           <span class="nav_name">Files</span>
+                           <i class="bx bx-image-add nav_icon"></i>
+                           <span class="nav_name">Predict with CT-scan</span>
                         </a>
                         <a href="/chatbot" class="nav_link">
-                           <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
+                           <i class="bx bx-chat nav_icon"></i>
                            <span class="nav_name">Chat with us</span>
                         </a>
                      </div>
@@ -92,25 +92,25 @@
                {% if messages %} 
                   {% for cat, mess in messages %} 
                      {% if cat == "error" %}
-                     <div
-                        class="alert alert-danger alter-dismissable fade show container"
-                        role="alert"
-                     >
-                        {{ mess }}
-                        <button type="button" class="close" data-dismiss="alert">
-                           <span aria-hidden="true" class="close-btn">&times;</span>
-                        </button>
-                     </div>
+                        <div
+                           class="alert alert-danger alter-dismissable fade show container"
+                           role="alert"
+                        >
+                           {{ mess }}
+                           <button type="button" class="close" data-dismiss="alert">
+                              <span aria-hidden="true" class="close-btn">&times;</span>
+                           </button>
+                        </div>
                      {% else %}
-                     <div
-                        class="alert alert-success alter-dismissable fade show"
-                        role="alert"
-                     >
-                        {{ mess }}
-                        <button type="button" class="close" data-dismiss="alert">
-                           <span aria-hidden="true" class="close-btn">&times;</span>
-                        </button>
-                     </div>
+                        <div
+                           class="alert alert-success alter-dismissable fade show"
+                           role="alert"
+                        >
+                           {{ mess }}
+                           <button type="button" class="close" data-dismiss="alert">
+                              <span aria-hidden="true" class="close-btn">&times;</span>
+                           </button>
+                        </div>
                      {% endif %} 
                   {% endfor %} 
                {% endif %} 
@@ -122,8 +122,7 @@
             <div class="bg-light"></div>
          </div>
       {% else %} 
-         {% block login %}
-         {% endblock %} 
+         {% block login %} {% endblock %} 
       {% endif %}
 
       <script
@@ -131,6 +130,7 @@
          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
          crossorigin="anonymous"
       ></script>
+      
       <script
          src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
@@ -138,6 +138,6 @@
       ></script>
 
       <!-- Sidebar.js -->
-      <script src="{{url_for('static', filename='sidebar.js')}}"></script>
+      <script type="module" src="{{url_for('static', filename='sidebar.js')}}"></script>
    </body>
 </html>
