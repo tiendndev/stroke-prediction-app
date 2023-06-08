@@ -73,7 +73,12 @@
                 and your hard work has paid off. Keep up the great work and continue to prioritize your health 
                 and well-being. You should be proud of yourself for taking the necessary steps to reduce your risk of
                  stroke. Remember to always listen to your body and seek medical attention if needed. Keep on shining!</p>`
-        }
+        } 
+
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+        html.setAttribute('data-bs-theme', storedTheme);
+   }
     }
     
 </script>

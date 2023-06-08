@@ -15,6 +15,85 @@
 </style>
 
 <div class="container">
+<!-- <script>
+   // Thay đổi giá trị này thành thời gian nhắc nhở thích hợp
+   var medicationReminderTime = new Date('2023-06-09T00:20:00');
+
+   // Lấy thời gian hiện tại
+   var currentTime = new Date();
+
+   const showMedicationReminder = function() {
+      // Kiểm tra xem trình duyệt hỗ trợ Notification API hay không
+      if ('Notification' in window) {
+         // Hỏi người dùng cho phép hiển thị thông báo
+         Notification.requestPermission().then(function (permission) {
+            if (permission === 'granted') {
+               // Tạo thông báo nhắc nhở
+               var notification = new Notification('Nhắc nhở uống thuốc', {
+               body: 'Hãy nhớ uống thuốc của bạn!'
+               // icon: 'path/to/notification-icon.png' // Thay đổi đường dẫn tới biểu tượng thông báo
+               });
+            }
+         });
+      }
+   }
+
+   // So sánh thời gian hiện tại và thời gian nhắc nhở
+   if (currentTime >= medicationReminderTime) {
+       showMedicationReminder();
+   }
+</script> -->
+<h1>Nhắc nhở uống thuốc</h1>
+
+<label for="hour">Giờ:</label>
+<input type="number" id="hour" min="0" max="23" value="10">
+
+<label for="minute">Phút:</label>
+<input type="number" id="minute" min="0" max="59" value="30">
+
+<button onclick="setDailyReminder()">Thiết lập nhắc nhở</button>
+
+<script>
+  function setDailyReminder() {
+      var hourInput = document.getElementById("hour");
+      var reminderHour = parseInt(hourInput.value);
+      var minuteInput = document.getElementById("minute");
+      var reminderMinute = parseInt(minuteInput.value);
+
+      // Thiết lập thời gian nhắc nhở hàng ngày
+      var reminderTime = new Date();
+      reminderTime.setHours(reminderHour);
+      reminderTime.setMinutes(reminderMinute);
+      reminderTime.setSeconds(0);
+
+      // Lấy ngày hiện tại
+      var today = new Date();
+
+      // Nếu đã qua giờ nhắc nhở trong ngày hiện tại, thiết lập lại ngày là ngày mai
+      if (today.getHours() > reminderHour) {
+        reminderTime.setDate(today.getDate() + 1);
+      }
+
+      // Tính khoảng thời gian từ hiện tại đến giờ nhắc nhở
+      var timeDiff = reminderTime.getTime() - today.getTime();
+
+      // Tạo thông báo nhắc nhở hàng ngày
+      var intervalId = setInterval(function() {
+        var now = new Date();
+
+        // Kiểm tra nếu đã đến giờ nhắc nhở
+        if (now >= reminderTime) {
+          var notification = new Notification("Đã đến giờ uống thuốc!");
+
+          // Cập nhật lại giờ nhắc nhở cho ngày mai
+          reminderTime.setDate(reminderTime.getDate() + 1);
+        }
+      }, timeDiff);
+    }
+</script>
+
+
+
    <div class="row">
       <h2 class="mt-lg-5 mb-sm-5">I'm Doctorbot, feel free to let me know about your question</h2>
    </div>
@@ -103,6 +182,8 @@
 
    $('#chat-input').change(handleChat);
    $('#gpt-button').click(handleChat);
+
+
    
 </script>
 

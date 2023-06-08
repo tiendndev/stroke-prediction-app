@@ -1,8 +1,8 @@
 # Note: you need to be using OpenAI Python v0.27.0 for the code below to work
 import openai
 
-from strokeprediction import config
 # import config
+from strokeprediction import config
 
 api_key = config.DevelopmentConfig.OPENAI_KEY
 openai.api_key = api_key

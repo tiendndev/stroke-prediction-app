@@ -14,7 +14,7 @@ class Note(db.Model):
     gender = db.Column(db.String(10))
     age = db.Column(db.Integer)
     hypertension = db.Column(db.Integer)
-    heart_desease = db.Column(db.String(10))
+    heart_disease = db.Column(db.String(10))
     ever_married = db.Column(db.String(10))
     residence_type = db.Column(db.String(10))
     avg_glucose_level = db.Column(db.Float)
@@ -23,16 +23,17 @@ class Note(db.Model):
     smoking_status = db.Column(db.String(20))
 
     stroke = db.Column(db.Integer)
+    percentageStroke = db.Column(db.Float)
 
     def __init__(self, fullname, user_id, gender, age, hypertension,
-                 heart_desease, ever_married, work_type, residence_type,
-                 avg_glucose_level, bmi, smoking_status, stroke):
+                 heart_disease, ever_married, work_type, residence_type,
+                 avg_glucose_level, bmi, smoking_status, stroke, percentageStroke):
         self.fullname = fullname
         self.user_id = user_id
         self.gender = gender
         self.age = age
         self.hypertension = hypertension
-        self.heart_desease = heart_desease
+        self.heart_disease = heart_disease
         self.ever_married = ever_married
         self.work_type = work_type
         self.residence_type = residence_type
@@ -40,6 +41,7 @@ class Note(db.Model):
         self.bmi = bmi
         self.smoking_status = smoking_status
         self.stroke = stroke
+        self.percentageStroke = percentageStroke
 
 
 class User(db.Model, UserMixin):

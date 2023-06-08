@@ -42,7 +42,7 @@ def add_symptom_service():
         return jsonify({"message": "Request error!"}), 400
 
 
-# Get symptom by id
+# Get symptom
 def get_symptom_by_id_service(id):
     symptom = Note.query.get(id)
     if symptom:

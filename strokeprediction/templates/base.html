@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
    <head>
       <title>{% block title %} {% endblock %}</title>
       <meta charset="UTF-8" />
@@ -43,12 +43,57 @@
          <div class="side-bar-bs" id="body-pd">
             <!-- Header -->
             <header class="header" id="header">
+               <!-- Toggle button -->
                <div class="header_toggle">
                   <i class="bx bx-menu pl-xl-4" id="header-toggle"></i>
                </div>
+               <!-- User avatar -->
                <div class="header_img">
                   <img src="{{url_for('static', filename='user.jpeg')}}" alt="" />
+                  <!-- Menu -->
+                  <div class="menu">
+                     <p class="menu-email">Ngọc Tiên</p>
+                     <div class="menu-item">
+                        <a href="/setting">
+                           <i class="bx bxs-cog"></i>
+                           Setting
+                        </a>
+                     </div>
+                     <div class="menu-item">
+                        <p>
+                           <i class="bx bx-moon"></i>
+                           Theme
+                        </p>
+                        <ul class="menu-option">
+                           <li class="light-mode">
+                              <i class="bx bx-sun"></i>
+                              Light
+                           </li>
+                           <li class="dark-mode">
+                              <i class="bx bxs-moon"></i>
+                              Dark
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="menu-item">
+                        <p>
+                           <i class="bx bx-world"></i>
+                           Language
+                        </p>
+                        <ul class="menu-option">
+                           <li>English</li>
+                           <li>Vietnamese</li>
+                        </ul>
+                     </div>
+                     <div class="menu-item">
+                        <a href="/">
+                           <i class="bx bxs-home"></i>
+                           Homepage
+                        </a>
+                     </div>
+                  </div>
                </div>
+               
             </header>
 
             <div class="l-navbar" id="nav-bar">
@@ -88,12 +133,12 @@
             </div>
 
             <!-- Flash message -->
-            {% with messages = get_flashed_messages(with_categories = true) %} 
+           <!--  {% with messages = get_flashed_messages(with_categories = true) %} 
                {% if messages %} 
                   {% for cat, mess in messages %} 
                      {% if cat == "error" %}
                         <div
-                           class="alert alert-danger alter-dismissable fade show container"
+                           class="alert alert-danger"
                            role="alert"
                         >
                            {{ mess }}
@@ -103,7 +148,7 @@
                         </div>
                      {% else %}
                         <div
-                           class="alert alert-success alter-dismissable fade show"
+                           class="alert alert-success"
                            role="alert"
                         >
                            {{ mess }}
@@ -114,12 +159,12 @@
                      {% endif %} 
                   {% endfor %} 
                {% endif %} 
-            {% endwith %}
+            {% endwith %} -->
 
             <!--Container Main start-->
             <!-- Content -->
             {% block content %} {% endblock %}
-            <div class="bg-light"></div>
+            <!-- <div></div> -->
          </div>
       {% else %} 
          {% block login %} {% endblock %} 
@@ -139,5 +184,7 @@
 
       <!-- Sidebar.js -->
       <script type="module" src="{{url_for('static', filename='sidebar.js')}}"></script>
+
+      <script src="{{url_for('static', filename='base.js')}}"></script>
    </body>
 </html>

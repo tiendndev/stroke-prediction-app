@@ -1,24 +1,129 @@
-{% extends "base.html" %} 
-
+{% extends "base.html" %}
 {% block title %}Modified Page{% endblock %} 
-
 {% block content %}
 
-<style>
-   /* td#stroke {
-      background-color: var(--bs-danger-bg-subtle);
-   } */
-</style>
-
 <div class="container">
-   <h2 class="mt-lg-5 mb-sm-5" class="">Your data</h2>
-   <div class="data-container">
+   <h2 class="mt-lg-5 mb-sm-3" class="font-weight-bold">Stroke Prediction</h2>
+   <p class="mb-sm-3">This application uses various AI-algorithms
+      to indicate the risk of a stroke. If a stroke is suspected, 
+      a doctor must always be consulted. This is a medical emergency. 
+      This application is for demonstration purposes only.</p>
+   <p class="mb-sm-3">Prediction done</p>
+   <p>Risk of Stroke</p>
+   <h2 id="percentageStroke"></h2>
+   <p>Confidence in the risk assessment:</p>
+   <p class="confidenceRate mb-sm-3"></p>
+   
+   <div class="bmi-sumary row align-items-center">
+      <div class="bmi-scale col" align="center">
+         <p class="mb-4"><strong>BMI level:</strong></p>
+         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300px" height="163px" viewBox="0 0 300 163">
+            <g transform="translate(18,18)" style="font-family:arial,helvetica,sans-serif;font-size: 12px;">
+               <defs>
+                  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                     <polygon points="0 0, 10 3.5, 0 7"></polygon>
+                  </marker>
+                  <path id="curvetxt1" d="M-4 140 A140 140, 0, 0, 1, 284 140" style="fill: none;"></path>
+                  <path id="curvetxt2" d="M33 43.6 A140 140, 0, 0, 1, 280 140"></path>
+                  <path id="curvetxt3" d="M95 3 A140 140, 0, 0, 1, 284 140"></path>
+                  <path id="curvetxt4" d="M235.4 33 A140 140, 0, 0, 1, 284 140"></path>
+               </defs>
+               <path d="M0 140 A140 140, 0, 0, 1, 6.9 96.7 L140 140 Z" fill="#bc2020"></path>
+               <path d="M6.9 96.7 A140 140, 0, 0, 1, 12.1 83.1 L140 140 Z" fill="#d38888"></path>
+               <path d="M12.1 83.1 A140 140, 0, 0, 1, 22.6 63.8 L140 140 Z" fill="#ffe400"></path>
+               <path d="M22.6 63.8 A140 140, 0, 0, 1, 96.7 6.9 L140 140 Z" fill="#008137"></path>
+               <path d="M96.7 6.9 A140 140, 0, 0, 1, 169.1 3.1 L140 140 Z" fill="#ffe400"></path>
+               <path d="M169.1 3.1 A140 140, 0, 0, 1, 233.7 36 L140 140 Z" fill="#d38888"></path>
+               <path d="M233.7 36 A140 140, 0, 0, 1, 273.1 96.7 L140 140 Z" fill="#bc2020"></path>
+               <path d="M273.1 96.7 A140 140, 0, 0, 1, 280 140 L140 140 Z" fill="#8a0101"></path>
+               <path d="M45 140 A90 90, 0, 0, 1, 230 140 Z" fill="#fff"></path>
+               <circle cx="140" cy="140" r="5" fill="#666"></circle>
+               <g style="paint-order: stroke;stroke: #fff;stroke-width: 2px;">
+                  <text x="25" y="111" transform="rotate(-72, 25, 111)">16</text>
+                  <text x="30" y="96" transform="rotate(-66, 30, 96)">17</text>
+                  <text x="35" y="83" transform="rotate(-57, 35, 83)">19</text>
+                  <text x="97" y="29" transform="rotate(-18, 97, 29)">25</text>
+                  <text x="157" y="20" transform="rotate(12, 157, 20)">30</text>
+                  <text x="214" y="45" transform="rotate(42, 214, 45)">35</text>
+                  <text x="252" y="95" transform="rotate(72, 252, 95)">40</text>
+               </g>
+               <g style="font-size: 14px;">
+                  <text><textPath xlink:href="#curvetxt1">Underweight</textPath></text>
+                  <text><textPath xlink:href="#curvetxt2">Ideal</textPath></text>
+                  <text><textPath xlink:href="#curvetxt3">Overweight</textPath></text>
+                  <text><textPath xlink:href="#curvetxt4">Obesity</textPath></text>
+               </g>
+               <line id="line" x1="140" y1="140" x2="65" y2="140" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)">
+                  <animateTransform 
+                     id="animateTransform" 
+                     attributeName="transform" 
+                     attributeType="XML" 
+                     type="rotate" 
+                     from="0 140 140" 
+                     to="0 140 140" 
+                     dur="1s" 
+                     fill="freeze" 
+                     repeatCount="1">
+                  </animateTransform>
+               </line>
+               <text id="calculate-result" x="67" y="120" style="font-size: 30px;font-weight:bold;color:#000;"></text>
+            </g>
+         </svg>
+      </div>
+
+      <div class="bmi-table col" align="center">
+         <p class="text-bg-info">This is the World Health Organization's (WHO) recommended body weight based on BMI values for adults. It is used for both men and women, age 20 or older.</p>
+         <table class="table table-bordered" align="center">
+            <tbody>
+               <tr>
+                  <td class="cinfoHd">Classification</td>
+                  <td>BMI range - kg/m<sup>2</sup></td>
+               </tr>
+               <tr>
+                  <td>Severe Thinness</td>
+                  <td align="center">&lt; 16</td>
+               </tr>
+               <tr>
+                  <td>Moderate Thinness</td>
+                  <td align="center">16 - 17</td>
+               </tr>
+               <tr>
+                  <td>Mild Thinness</td>
+                  <td align="center">17 - 18.5</td>
+               </tr>
+               <tr>
+                  <td>Ideal</td>
+                  <td align="center">19 - 25</td>
+               </tr>
+               <tr>
+                  <td>Overweight</td>
+                  <td align="center">25 - 30</td>
+               </tr>
+               <tr>
+                  <td>Obese Class I</td>
+                  <td align="center">30 - 35</td>
+               </tr>
+               <tr>
+                  <td>Obese Class II</td>
+                  <td align="center">35 - 40</td>
+               </tr>
+               <tr>
+                  <td>Obese Class III</td>
+                  <td align="center">&gt; 40</td>
+               </tr>
+            </tbody>
+         </table>
+     </div>
+   </div>
+   
+
+   <div class="data-container mt-4">
       <div class="table-responsive">
          <table class="table table-hover">
             <thead class="thead-dark">
                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Value</th>
+                  <th scope="col"></th>
+                  <th scope="col">Data entered</th>
                </tr>
             </thead>
             <tbody>
@@ -40,7 +145,7 @@
                </tr>
                <tr>
                   <th scope="row">Heart desease</th>
-                  <td id="heart_desease"></td>
+                  <td id="heart_disease"></td>
                </tr>
                <tr>
                   <th scope="row">Ever married</th>
@@ -103,7 +208,7 @@
    const age = $('td#age');
    const gender = $('td#gender');
    const hypertension = $('td#hypertension');
-   const heart_desease = $('td#heart_desease');
+   const heart_disease = $('td#heart_disease');
    const ever_married = $('td#ever_married');
    const residence_type = $('td#residence_type');
    const work_type = $('td#work_type');
@@ -111,6 +216,7 @@
    const avg_glucose_level = $('td#avg_glucose_level');
    const bmi = $('td#bmi');
    const stroke = $('td#stroke');
+   const percentageStroke = $('#percentageStroke');
 
    const showData = (data) => {
       if (data) {
@@ -118,7 +224,7 @@
          age.innerHTML = `${data.age}`;
          gender.innerHTML = `${data.gender}`;
          hypertension.innerHTML = `${data.hypertension ? 'Yes' : 'No'}`;
-         heart_desease.innerHTML = `${data.heart_desease ? 'Yes' : 'No'}`;
+         heart_disease.innerHTML = `${data.heart_disease ? 'Yes' : 'No'}`;
          ever_married.innerHTML = `${data.ever_married ? 'Yes' : 'No'}`;
          residence_type.innerHTML = `${data.residence_type}`;
          work_type.innerHTML = `${data.work_type}`;
@@ -126,11 +232,25 @@
          avg_glucose_level.innerHTML = `${data.avg_glucose_level}`;
          bmi.innerHTML = `${data.bmi}`;
          stroke.innerText = `${
-            data.stroke ? 'You are at risk of having a stroke ❗' : 'You are normal, keep to stay healthy ❤️'
+            data.stroke
+               ? 'You are at risk of having a stroke ❗'
+               : 'You are not at risk of having a stroke, keep staying healthy ❤️'
          }`;
-         
-         data.stroke? stroke.style.backgroundColor = 'var(--bs-danger-bg-subtle)' : stroke.style.backgroundColor = 'var(--bs-success-bg-subtle)'
-         
+
+         percentageStroke.innerText = `${data.percentageStroke.toFixed(2)}%`;
+         let rotateDegree = (data.bmi - 16) * 6.4;
+         let animateTransform = document.getElementById('animateTransform');
+         animateTransform.setAttribute('to', rotateDegree + ' 140 140');
+         animateTransform.beginElement();
+
+         data.stroke
+            ? (stroke.style.backgroundColor = 'var(--bs-danger-bg-subtle)')
+            : (stroke.style.backgroundColor = 'var(--bs-success-bg-subtle)');
+
+         const confidenceRate = $('.confidenceRate')
+         confidenceRate.innerHTML = `${(100 - data.percentageStroke).toFixed(2)}%`;
+         const bmiScaleResult = document.getElementById('calculate-result')
+         bmiScaleResult.textContent = `BMI =  ${data.bmi}`
 
          const deleteBtn = $('.delete');
          const deleteNote = () => {
@@ -148,7 +268,6 @@
          };
       }
    };
-   
 </script>
 
 {% endblock %}

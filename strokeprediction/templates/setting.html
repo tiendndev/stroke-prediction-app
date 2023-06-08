@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Account Settings{% endblock %} 
+
+{% block content %}
+
+<style>
+    .show {
+        width: 100% !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+       <h2 class="mt-lg-5 mb-sm-5 px-4">Personal Account Settings</h2>
+    </div>
+
+    <div class="row border border-secondary-subtle rounded mb-5 px-3 py-4 m-2">
+        <form class="form-inline">
+            <label for="basic-url"><h4>Your Name</h4></label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">users/</span>
+                </div>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                <button class="btn btn-outline-dark col-2">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row border border-secondary-subtle rounded mb-5 px-3 py-4 m-2">
+        <form class="form-inline">
+            <div class="form-group">
+              <label for="inputPassword6"><h4>Password</h4></label>
+              <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+              <small id="passwordHelpInline" class="text-muted">
+                Enter your new password
+              </small>
+            </div>
+            <button type="submit" class="btn btn-outline-dark bx-pull-right col-2">Save</button>
+        </form>
+    </div>
+
+    <div class="row border border-danger-subtle rounded mb-5 px-3 py-4 m-2">
+        <div class="row">
+            <h4>Delete Personal Account</h4>
+            <p class="mb-3">Permanently remove your Personal Account and all of its contents from the Vercel platform. 
+            This action is not reversible, so please continue with caution.
+            </p>
+            <!-- Button trigger modal -->
+            <button class="btn btn-outline-danger col-auto mx-3" data-toggle="modal" data-target="#exampleModal">Delete Personal Account</button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Personal Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="http://127.0.0.1:5000/setting/delete-user">
+                        <div class="modal-body">
+                            <h5 class="text-danger">This action is not reversible. Please be certain.</h5>
+                                <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Enter your email to continue: </label>
+                                <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Delete</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

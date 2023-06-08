@@ -4,23 +4,23 @@
 
 {% block content %}
 
-<div class="bg-light height-100vh">
+<div class="height-100vh">
     <div class="container">
         <h2 class="mt-lg-5 mb-sm-5">Please enter the following information</h2>
         <form action="" method="post">
 
             <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="exampleFormControlInput1" class="form-label">Full name</label>
-                    <input 
-                        type="text" 
-                        name="fullname" 
-                        class="form-control" 
-                        id="exampleFormControlInput1"
-                        placeholder="Enter your full name..." 
-                        required
-                    >
-                </div>
+                    <div class="col-md-6">
+                        <label for="exampleFormControlInput1" class="form-label">Full name</label>
+                        <input 
+                            type="text" 
+                            name="fullname" 
+                            class="form-control" 
+                            id="exampleFormControlInput1"
+                            placeholder="Enter your full name..." 
+                            required
+                        >
+                    </div>
                 <div class="col-md-6">
                     <label for="exampleFormControlInput1" class="form-label">Age</label>
                     <input 
@@ -58,8 +58,8 @@
 
             <div class="row">
                 <div class="input-group mb-3 col-6">
-                    <label class="input-group-text" for="specificSizeSelect">Heart desease</label>
-                    <select class="form-select col-5" id="specificSizeSelect" name="heart_desease" required>
+                    <label class="input-group-text" for="specificSizeSelect">Heart disease</label>
+                    <select class="form-select col-5" id="specificSizeSelect" name="heart_disease" required>
                         <option selected>Choose...</option>
                         <option value="1">Yes</option>
                         <option value="0">No</option>
@@ -102,16 +102,14 @@
 
 
             <div class="row g-3">
-                <div class="col-sm-7">
-                    <label class="visually-hidden" for="autoSizingInput">Smoking status</label>
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        id="autoSizingInput" 
-                        placeholder="Enter smoking status..."
-                        name="smoking_status" 
-                        required
-                    >
+                <div class="input-group mb-3 col-6">
+                    <label class="input-group-text" for="specificSizeSelect">Smoking status</label>
+                    <select class="form-select col-6" id="specificSizeSelect" name="smoking_status" required>
+                        <option selected>Choose...</option>
+                        <option value="formerly_smoked">formerly_smoked</option>
+                        <option value="never_smoked">Never smoked</option>
+                        <option value="smokes">Smokes</option>
+                    </select>
                 </div>
 
                 <div class="col-sm">
@@ -121,7 +119,7 @@
                         step="0.001"
                         class="form-control"
                         id="autoSizingInput"
-                        placeholder="eg: 170..."
+                        placeholder="Your Average Glucose..."
                         name="avg_glucose_level"
                         required
                     >
@@ -134,7 +132,7 @@
                         step="0.001"
                         class="form-control"
                         id="autoSizingInput"
-                        placeholder="eg: 62..."
+                        placeholder="Your BMI..."
                         name="bmi"
                         required
                     >
@@ -145,8 +143,39 @@
 
         </form>
 
+        <div class="calculator">
+            <h4 class="mt-5">You can calculate your BMI right here</h3>
+            <div class="calc-box">
+                <label for="weight">Weight</label>
+                <input class="weight-input" type="number" name="" id="" placeholder="Your weight (kg)..." value="60">
+                <label for="height">Height</label>
+                <input class="height-input" type="number" name="" id="" placeholder="Your height (cm)..." value="174">
+                <button class="calculate-btn">CALCULATE</button>
+                <button class="clearCalc-btn">CLEAR</button>
+                <span class="calc-result"></span>
+            </div>
+
+        </div>
+
     </div>
 
 </div>
+
+<script>
+    document.querySelector(".calculate-btn").addEventListener('click', () => {
+        let calcResult = document.querySelector('.calc-result');
+        let height = parseFloat(document.querySelector('.height-input').value * Math.pow(10, -2));
+        let weigh = parseFloat(document.querySelector('.weight-input').value);
+        let bmi = weigh / (height * height);
+        console.log(calcResult)
+        calcResult.innerText = "BMI = " + bmi.toFixed(1);
+    })
+
+    document.querySelector('.clearCalc-btn').addEventListener('click', () => {
+        document.querySelector('.height-input').value = "";
+        document.querySelector('.weight-input').value = "";
+    })
+
+</script>
 
 {% endblock %}
