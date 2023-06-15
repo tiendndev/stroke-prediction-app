@@ -47,8 +47,8 @@ def signup():
             flash("User existed!", category="error")
         elif len(email) < 4:
             flash("Email must be greater than 3 characters.")
-        elif len(password) < 7:
-            flash("Password must be greater than 7 characters.")
+        elif len(password) < 4:
+            flash("Password must be greater than 4 characters.")
         elif password != confirm_password:
             flash("Password does not match!.", category="error")
         else:
@@ -61,7 +61,7 @@ def signup():
                 # flash("User created!", category="success")
 
                 # Tu dong login sau khi tao tai khoan thanh cong
-                login_user(user, remember=True)
+                # login_user(user, remember=True)
                 return redirect(url_for("views.form"))
             except:
                 return jsonify({"message": "Error"}), 400
@@ -78,14 +78,6 @@ def logout():
     # Khi da su dung Blueprint o tren thi phai user.login
     return redirect(url_for("user.login"))
 
-# @user.route("/email", methods=["GET"])
-# # @login_required
-# def get_user_email():
-#     user = current_user
-#     if user:
-#         return jsonify({"email": user.email})
-#     else:
-#         return jsonify({"message": "User not found"}), 404
 # @user.route("/setting/delete-user", methods=["POST", "GET", "DELETE"])
 # def deleteUser():
 #     if request.method == "POST":

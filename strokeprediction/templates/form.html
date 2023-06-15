@@ -4,6 +4,8 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="{{url_for('static', filename='styles/data-input.css')}}">
+
 <div class="height-100vh">
     <div class="container">
         <h2 class="mt-lg-5 mb-sm-5">Please enter the following information</h2>
@@ -143,39 +145,56 @@
 
         </form>
 
-        <div class="calculator">
-            <h4 class="mt-5">You can calculate your BMI right here</h3>
-            <div class="calc-box">
-                <label for="weight">Weight</label>
-                <input class="weight-input" type="number" name="" id="" placeholder="Your weight (kg)..." value="60">
-                <label for="height">Height</label>
-                <input class="height-input" type="number" name="" id="" placeholder="Your height (cm)..." value="174">
-                <button class="calculate-btn">CALCULATE</button>
-                <button class="clearCalc-btn">CLEAR</button>
-                <span class="calc-result"></span>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bmi-calculator">
+                        <div class="result">
+                            <div class="result-text">
+                                <h1><span id="bmiValue">24.8 </span>kg/m2</h1><small id="bmid">Normal</small>
+                            </div>
+                        </div>
+                        <div class="calculator">
+                            <h2 class="text-center calculator-title">You can calculate your BMI here</h2>
+                            <hr class="calculator-hr" />
+                            <div class="height">
+                                <input class="value_range" id="height" type="range" value="182" min="100" max="250" step="1" />
+                                <div class="label-height field-text">0</div>
+                            </div>
+                            <div class="weight">
+                                <input class="value_range" id="weight" type="range" value="82" min="0" max="250" step="1" />
+                                <div class="label-weight field-text">0</div>
+                            </div>
+                            <div class="submit">
+                                <input class="submit" type="submit" id="submit" value="Calculate" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
 
     </div>
 
 </div>
 
-<script>
-    document.querySelector(".calculate-btn").addEventListener('click', () => {
-        let calcResult = document.querySelector('.calc-result');
-        let height = parseFloat(document.querySelector('.height-input').value * Math.pow(10, -2));
-        let weigh = parseFloat(document.querySelector('.weight-input').value);
-        let bmi = weigh / (height * height);
-        console.log(calcResult)
-        calcResult.innerText = "BMI = " + bmi.toFixed(1);
-    })
+<script src="{{url_for('static', filename='data-input.js')}}"></script>
 
-    document.querySelector('.clearCalc-btn').addEventListener('click', () => {
-        document.querySelector('.height-input').value = "";
-        document.querySelector('.weight-input').value = "";
-    })
+<!-- <script>
+    // document.querySelector(".calculate-btn").addEventListener('click', () => {
+    //     let calcResult = document.querySelector('.calc-result');
+    //     let height = parseFloat(document.querySelector('.height-input').value * Math.pow(10, -2));
+    //     let weigh = parseFloat(document.querySelector('.weight-input').value);
+    //     let bmi = weigh / (height * height);
+    //     console.log(calcResult)
+    //     calcResult.innerText = "BMI = " + bmi.toFixed(1);
+    // })
 
-</script>
+    // document.querySelector('.clearCalc-btn').addEventListener('click', () => {
+    //     document.querySelector('.height-input').value = "";
+    //     document.querySelector('.weight-input').value = "";
+    // })
+
+</script> -->
 
 {% endblock %}

@@ -1,25 +1,26 @@
-from flask import Blueprint
-from flask_login import login_required
+from flask import Blueprint, jsonify, render_template, request
+from flask_login import login_required, current_user
 
-from .services import add_symptom_service, get_all_symptoms_service, delete_symptom_by_id_service, get_symptoms_by_patient_service, get_user_email_by_id_service, get_patient_medical_records
+from .services import add_symptom_service, get_all_symptoms_service, delete_symptom_by_id_service, get_symptoms_by_patient_service, get_patient_medical_records, delete_current_patient, update_patient_email_service, update_patient_password_service
 
 symptoms = Blueprint("symptoms", __name__)
 
 
-# Add new parameter
+# Add new symptoms
 @symptoms.route("/patient-management/patient", methods=["POST"])
 def add_symptom():
     return add_symptom_service()
 
 
-# Get all parammeters
+# Get all symptoms of all patients
 @symptoms.route("/patient-management/views", methods=["GET"])
 def get_all_symptoms():
     return get_all_symptoms_service()
 
 
-# Delete parameter
-@symptoms.route("/patient-management/delete", methods=["DELETE"])
+# Delete symptom of patient
+@symptoms.route("/patient-management/views/delete", methods=["DELETE"])
+@login_required
 def delete_symptom_by_id():
     return delete_symptom_by_id_service()
 
@@ -30,13 +31,33 @@ def get_symptoms_by_patient(user_email):
     return get_symptoms_by_patient_service(user_email)
 
 
-@symptoms.route('/users/<int:user_id>', methods=['GET'])
-def get_user_email(user_id):
-    return get_user_email_by_id_service(user_id)
-
-
+# Get symptoms of patient
 @symptoms.route('/patient/medical_records', methods=['GET'])
 @login_required
 def get_patient_medical_records_controller():
         return get_patient_medical_records()
         
+
+@symptoms.route('/patient/delete', methods=['POST'])
+@login_required
+def delete_patient_controller():
+    email = request.form.get('email')
+
+    if delete_current_patient(email):
+        return render_template("login.html", user=None)
+    else:
+        return jsonify({'message': 'Patient not found'})
+    
+
+# Update patient_email 
+@symptoms.route('/patient/update-email', methods=['POST'])
+@login_required
+def update_patient_email_controller():
+     return update_patient_email_service()
+
+
+# Update patient_password
+@symptoms.route('/patient/update-password', methods=['POST'])
+@login_required
+def update_patient_password_controller():
+     return update_patient_password_service()

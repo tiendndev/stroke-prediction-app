@@ -1,6 +1,7 @@
 from flask import request, jsonify, flash, redirect, url_for
 from flask_login import current_user
 from sqlalchemy import func
+from werkzeug.security import generate_password_hash
 
 from strokeprediction.extension import db
 from strokeprediction.library_ma import SymptomSchema
@@ -10,6 +11,7 @@ symptom_schema = SymptomSchema()
 symptoms_schema = SymptomSchema(many=True)
 
 
+# Add symptoms
 def add_symptom_service():
     data = request.json
     if (data and ("user_id" in data) and ("gender" in data) and ("age" in data) and ("hypertension" in data)
@@ -43,17 +45,7 @@ def add_symptom_service():
         return jsonify({"message": "Request error!"}), 400
 
 
-# Get symptom
-def get_symptom_by_id_service(id):
-    symptom = Note.query.get(id)
-    if symptom:
-        # Mapping cac field cua book vao cac field cua schema
-        return symptom_schema.jsonify(symptom)
-    else:
-        return jsonify({"message": "Not found symptom!"}), 400
-
-
-# Get all symptoms
+# Get all symptoms of all patients
 def get_all_symptoms_service():
     symptoms = Note.query.all()
     if symptoms:
@@ -62,19 +54,17 @@ def get_all_symptoms_service():
         return jsonify({"message": "Not found symptom!"}), 400
 
 
-# Delete symptom
+# Delete symptom of patient
 def delete_symptom_by_id_service():
-    symptom = Note.query.get(1)
-    if symptom:
-        try:
-            db.session.delete(symptom)
-            db.session.commit()
-            return jsonify({"message": "symptom is deleted"}), 200
-        except IndentationError:
-            db.session.rollback()
-            return jsonify({"message": "Can not delete symptom!"}), 400
+    patient = current_user
+
+    if patient.notes:
+        # Delete all the notes for the patient
+        db.session.delete(patient.notes)
+        db.session.commit()
+        return jsonify({'message': 'Medical records deleted successfully'})
     else:
-        return jsonify({"message": "Not found symptom!"}), 400
+        return jsonify({'error': 'No medical records found for the patient'}), 404
 
 
 # Get symptoms by user_email
@@ -86,16 +76,9 @@ def get_symptoms_by_patient_service(user_email):
         return symptoms_schema.jsonify(symptom)
     else:
         return jsonify({"message": f"Not found symptoms by patient {user_email}"}), 404
-    
-
-def get_user_email_by_id_service(user_id):
-    user = User.query.get(user_id)
-    if not user:
-        return jsonify({'error': 'User not found'}), 404
-    
-    return jsonify({'email': user.email})
 
 
+# Get symptoms of patient
 def get_patient_medical_records():
     patient = current_user
 
@@ -121,5 +104,52 @@ def get_patient_medical_records():
 
     return jsonify({
         'patient': patient.user_name,
+        'email': patient.email,
         'medical_records': medical_records_data
     })
+
+
+#  Delete patient account
+def delete_current_patient(email):
+    patient = User.query.filter_by(email=email).first()
+
+    if patient:
+        db.session.delete(patient)
+        db.session.commit()
+        return True
+    else:
+        return False
+    
+
+#  Update patient_email
+def update_patient_email_service():
+    new_email = request.form.get('new_email')
+
+    if not new_email:
+        return jsonify({'message': 'New email is required'}), 400
+
+    current_patient = User.query.get(current_user.id)
+    if not current_patient:
+        return jsonify({'message': 'Patient not found'}), 404
+
+    current_patient.email = new_email
+    db.session.commit()
+
+    return jsonify({'message': 'Email updated successfully'})
+
+
+#  Update patient_password
+def update_patient_password_service():
+    new_password = request.form.get('new_password')
+
+    if not new_password:
+        return jsonify({'message': 'New password is required'}), 400
+
+    current_patient = User.query.get(current_user.id)
+    if not current_patient:
+        return jsonify({'message': 'Patient not found'}), 404
+
+    current_patient.password = generate_password_hash(new_password, method="sha256")
+    db.session.commit()
+
+    return jsonify({'message': 'Password updated successfully'})

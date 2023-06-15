@@ -194,13 +194,27 @@
       try {
          const response = await fetch(`${HOST}/patient/medical_records`);
          const jsonData = await response.json();
-         console.log(jsonData.medical_records)
          if (jsonData) {
             actionBtn.innerHTML = `
                     <div class="d-grid gap-2">
                         <button type="button" class="btn btn-danger pull-right mr-3 delete">Reset</button>
                     </div>`;
             showData(jsonData.medical_records);
+
+            const deleteBtn = document.querySelector('.delete')
+            const deleteNote = () => {
+               fetch(`${HOST}/patient-management/views/delete`, {
+                  method: 'DELETE',
+               }).then((res) => (window.location.href = '/data'));
+            };
+            if (deleteBtn) {
+               deleteBtn.onclick = () => {
+                  if (confirm('Do you want to delete all?')) {
+                     console.log(123)
+                     deleteNote();
+                  }
+               };
+            }
          }
       } catch (error) {
          console.log(error);
@@ -257,20 +271,6 @@
          const bmiScaleResult = document.getElementById('calculate-result')
          bmiScaleResult.textContent = `BMI =  ${data.bmi}`
 
-         const deleteBtn = $('.delete');
-         const deleteNote = () => {
-            fetch(`${HOST}/patient-management/delete`, {
-               method: 'DELETE',
-            }).then((res) => (window.location.href = '/data'));
-         };
-         deleteBtn.onclick = () => {
-            if (confirm('Do you want to delete all?')) {
-               console.log('You press yes');
-               deleteNote();
-            } else {
-               console.log('You press cancel');
-            }
-         };
       }
    };
 </script>
