@@ -1,86 +1,89 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}Form Page{% endblock %}
+{% block title %}Form Page{% endblock %} 
 
 {% block content %}
 
 <style>
-    ::file-selector-button {
-        display: none;
-    }
+  ::file-selector-button {
+    display: none;
+  }
 
-    .text-justify {
-        text-align: justify !important;
-    }
+  .text-justify {
+    text-align: justify !important;
+  }
 </style>
 
 <div class="container">
-    <form class="img-form" action="" method="post" enctype="multipart/form-data" name="file">
+  <form class="img-form" action="" method="post" enctype="multipart/form-data" name="file">
+    <div class="row">
+      <h2 class="mt-lg-5 mb-sm-5">Upload your CT-scan and get predict</h2>
+    </div>
 
-        <div class="row">
-            <h2 class="mt-lg-5 mb-sm-5">Upload your CT-scan and get predict</h2>
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="inputGroupFile01">Upload</label>
+        <input class="form-control col-6" type="file" name="file" id="inputGroupFile01" />
+        <button type="submit" class="btn btn-primary predict-btn">Predict Image</button>
+      </div>
+
+      <div class="row">
+        {% if img_url %}
+        <img src="{{url_for('static', filename='')+img_url}}" class="img-thumbnail col-md-6" align="center" alt="predicted img" />
+        {% endif %}
+
+        <div class="prediction col-md-6">
+          <h2 class="text-center predict-title">{% if prediction %}{{prediction}}{% endif %}</h2>
         </div>
-
-        <div class="row">
-            <div class="input-group mb-3 col-6">
-                <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                <input class="form-control col-6" type="file" name="file" id="inputGroupFile01" />
-                <button type="submit" class="btn btn-primary predict-btn">Predict Image</button>
-            </div>
-            
-            <div class="row">
-                {% if img_url %}
-                <img src="{{url_for('static', filename='')+img_url}}" class="img-thumbnail col-md-6"
-                align="center" alt="predicted img">
-                {% endif %}
-                
-                
-            <div class="prediction col-md-6">
-                <h2 class="text-center predict-title">
-                    {% if prediction %}{{prediction}}{% endif %}
-                </h2>
-            </div>
-            </div>
-        </div>
-
-    </form>
+      </div>
+    </div>
+  </form>
 </div>
 
-
 <script type="module">
-    import { HOST } from "../static/constant.js"
-    const form = document.querySelector(".img-form")
-    form.setAttribute("action", `${HOST}/image`)
+  import { HOST } from "../static/constant.js";
+  const form = document.querySelector(".img-form");
+  form.setAttribute("action", `${HOST}/image`);
 
-    function handleForm(event) { event.preventDefault(); } 
-    form.addEventListener('load', handleForm);
+  function handleForm(event) {
+    event.preventDefault();
+  }
+  form.addEventListener("load", handleForm);
 
-    const predictionContent = document.querySelector('.prediction')
-    const predictTitle = document.querySelector('h2.predict-title')
-    const predictBtn = document.querySelector('.predict-btn')
+  const predictionContent = document.querySelector(".prediction");
+  const predictTitle = document.querySelector("h2.predict-title");
+  const predictBtn = document.querySelector(".predict-btn");
 
-    window.onload = () => {
-        if (predictTitle.innerText == 'Stroke') {
-            predictionContent.innerHTML += `<h5 class="text-center">You are got stroke❗</h5><p class="text-justify">If you or someone you know has a stroke, it can be a very scary and uncertain time. 
-                However, it's important to note that many people who have a stroke make a full recovery with proper medical
-                care and support. <br><br>I would encourage you to seek emergency medical attention right away if you or someone you
-                know experiences symptoms of a stroke, such as sudden weakness or numbness in the face or limbs, difficulty
-                speaking, or problems with vision. Time is critical during a stroke, so it's important to act quickly.<br><br>
-                Remember to take care of yourself and seek out the resources and support you need during this difficult time</p>`
-        } else if (predictTitle.innerText == 'Normal') {
-            predictionContent.innerHTML += `<h5 class="text-center">You are normal ❤️</h5><p class="text-justify">You are doing an amazing job at taking care of your 
-                health and making smart choices! Avoiding a stroke requires a lot of effort and dedication, 
-                and your hard work has paid off. Keep up the great work and continue to prioritize your health 
-                and well-being. You should be proud of yourself for taking the necessary steps to reduce your risk of
-                 stroke. Remember to always listen to your body and seek medical attention if needed. Keep on shining!</p>`
-        } 
-
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme) {
-        html.setAttribute('data-bs-theme', storedTheme);
-   }
+  window.onload = () => {
+    if (predictTitle.innerText == "Stroke") {
+      predictionContent.innerHTML += `
+        <h5 class="text-center">You are got stroke❗</h5>
+        <p class="text-justify">If you or someone you
+        know has a stroke, it can be a very scary and uncertain time. However, it's important to note that many people who have
+        a stroke make a full recovery with proper medical care and support. 
+        <br><br>
+        I would encourage you to seek emergency medical
+        attention right away if you or someone you know experiences symptoms of a stroke, such as sudden weakness or numbness in the
+        face or limbs, difficulty speaking, or problems with vision. Time is critical during a stroke, so it's important to act quickly.
+        <br><br>
+        Remember to take care of yourself and seek out the resources and support you need during this difficult time
+        </p>`;
+    } else if (predictTitle.innerText == "Normal") {
+      predictionContent.innerHTML += `
+        <h5 class="text-center">You are normal ❤️</h5>
+        <p class="text-justify">You are doing an amazing job at taking care of your 
+        health and making smart choices! Avoiding a stroke requires a lot of effort and dedication, 
+        and your hard work has paid off. Keep up the great work and continue to prioritize your health 
+        and well-being. You should be proud of yourself for taking the necessary steps to reduce your risk of
+        stroke. Remember to always listen to your body and seek medical attention if needed. Keep on shining!
+        </p>`;
     }
-    
+
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      html.setAttribute("data-bs-theme", storedTheme);
+    }
+  };
 </script>
 
 {% endblock %}

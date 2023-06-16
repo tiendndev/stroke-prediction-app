@@ -1,7 +1,20 @@
 from flask import Blueprint, jsonify, render_template, request
 from flask_login import login_required, current_user
 
-from .services import add_symptom_service, get_all_symptoms_service, delete_symptom_by_id_service, get_symptoms_by_patient_service, get_patient_medical_records, delete_current_patient, update_patient_email_service, update_patient_password_service
+from .services import (
+    add_symptom_service, 
+    get_all_symptoms_service, 
+    delete_symptom_by_id_service, 
+    get_symptoms_by_patient_service, 
+    get_patient_medical_records, 
+    delete_current_patient, 
+    update_patient_email_service, 
+    update_patient_password_service,
+    event_index_service,
+    event_insert_service,
+    event_update_service,
+    event_ajax_delete_service
+)
 
 symptoms = Blueprint("symptoms", __name__)
 
@@ -61,3 +74,23 @@ def update_patient_email_controller():
 @login_required
 def update_patient_password_controller():
      return update_patient_password_service()
+
+
+@symptoms.route('/calendar')
+def event_index():
+    return event_index_service()
+
+
+@symptoms.route('/calendar/insert', methods=["POST"])
+def event_insert():
+    return event_insert_service()
+
+
+@symptoms.route("/calendar/update", methods=["POST"])
+def event_update():
+    return event_update_service()
+
+
+@symptoms.route("/calendar/ajax_delete", methods=["POST"])
+def event_ajax_delete():
+    return event_ajax_delete_service()

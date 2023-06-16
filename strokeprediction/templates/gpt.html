@@ -1,60 +1,33 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
 {% block title %}Chat with us{% endblock %} 
 
 {% block content %}
 
 <style>
-   button#gpt-button {
-      width: 84px;
-   }
+  button#gpt-button {
+    width: 84px;
+  }
 
-   .input-group.mb-3.col-6 {
-    box-shadow: 12px 14px 11px rgba(0,0,0,.1);
-   }
+  .input-group.mb-3.col-6 {
+    box-shadow: 12px 14px 11px rgba(0, 0, 0, 0.1);
+  }
 </style>
 
 <div class="container">
-<!-- <script>
-   // Thay đổi giá trị này thành thời gian nhắc nhở thích hợp
-   var medicationReminderTime = new Date('2023-06-09T00:20:00');
 
-   // Lấy thời gian hiện tại
-   var currentTime = new Date();
+  <!-- <h1>Nhắc nhở uống thuốc</h1>
 
-   const showMedicationReminder = function() {
-      // Kiểm tra xem trình duyệt hỗ trợ Notification API hay không
-      if ('Notification' in window) {
-         // Hỏi người dùng cho phép hiển thị thông báo
-         Notification.requestPermission().then(function (permission) {
-            if (permission === 'granted') {
-               // Tạo thông báo nhắc nhở
-               var notification = new Notification('Nhắc nhở uống thuốc', {
-               body: 'Hãy nhớ uống thuốc của bạn!'
-               // icon: 'path/to/notification-icon.png' // Thay đổi đường dẫn tới biểu tượng thông báo
-               });
-            }
-         });
-      }
-   }
+  <label for="hour">Giờ:</label>
+  <input type="number" id="hour" min="0" max="23" value="10" />
 
-   // So sánh thời gian hiện tại và thời gian nhắc nhở
-   if (currentTime >= medicationReminderTime) {
-       showMedicationReminder();
-   }
-</script> -->
-<h1>Nhắc nhở uống thuốc</h1>
+  <label for="minute">Phút:</label>
+  <input type="number" id="minute" min="0" max="59" value="30" />
 
-<label for="hour">Giờ:</label>
-<input type="number" id="hour" min="0" max="23" value="10">
+  <button onclick="setDailyReminder()">Thiết lập nhắc nhở</button>
 
-<label for="minute">Phút:</label>
-<input type="number" id="minute" min="0" max="59" value="30">
-
-<button onclick="setDailyReminder()">Thiết lập nhắc nhở</button>
-
-<script>
-  function setDailyReminder() {
+  <script>
+    function setDailyReminder() {
       var hourInput = document.getElementById("hour");
       var reminderHour = parseInt(hourInput.value);
       var minuteInput = document.getElementById("minute");
@@ -78,7 +51,7 @@
       var timeDiff = reminderTime.getTime() - today.getTime();
 
       // Tạo thông báo nhắc nhở hàng ngày
-      var intervalId = setInterval(function() {
+      var intervalId = setInterval(function () {
         var now = new Date();
 
         // Kiểm tra nếu đã đến giờ nhắc nhở
@@ -90,32 +63,30 @@
         }
       }, timeDiff);
     }
-</script>
+  </script> -->
 
+  <div class="row">
+    <h2 class="mt-lg-5 mb-sm-5">I'm Doctorbot, feel free to let me know about your question</h2>
+  </div>
 
+  <!-- Question and Answer -->
+  <div id="list-group" class="list-group w-auto"></div>
 
-   <div class="row">
-      <h2 class="mt-lg-5 mb-sm-5">I'm Doctorbot, feel free to let me know about your question</h2>
-   </div>
-
-   <!-- Question and Answer -->
-   <div id="list-group" class="list-group w-auto"></div>
-
-   <div class="input-group mb-3 col-6">
-      <input type="text" class="form-control" id="chat-input" placeholder="Enter your questions here..." />
-      <div class="input-group-append">
-         <button id="gpt-button" class="btn btn-primary">
-            <i class="fa fa-paper-plane"></i>
-         </button>
-      </div>
-   </div>
+  <div class="input-group mb-3 col-6">
+    <input type="text" class="form-control" id="chat-input" placeholder="Enter your questions here..." />
+    <div class="input-group-append">
+      <button id="gpt-button" class="btn btn-primary">
+        <i class="fa fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
 <script>
-   function handleChat () {
-      var question = $('#chat-input').val();
-      let html_data = '';
-      html_data += `
+  function handleChat() {
+    var question = $("#chat-input").val();
+    let html_data = "";
+    html_data += `
                  <div
                     class="list-group-item list-group-item-action d-flex gap-3 py-3"
                  >
@@ -136,21 +107,21 @@
                  </div>
               `;
 
-      $('#chat-input').val('');
-      $('#list-group').append(html_data);
+    $("#chat-input").val("");
+    $("#list-group").append(html_data);
 
-      if ($('.list-group-item').length % 2 != 0) {
-         $('#chat-input').attr('placeholder', 'Answering...')
-      }
+    if ($(".list-group-item").length % 2 != 0) {
+      $("#chat-input").attr("placeholder", "Answering...");
+    }
 
-      // Ajax call to server
-      $.ajax({
-         type: 'POST',
-         url: '/chatbot',
-         data: { prompt: question },
-         success: function (data) {
-            let gpt_data = '';
-            gpt_data += `
+    // Ajax call to server
+    $.ajax({
+      type: "POST",
+      url: "/chatbot",
+      data: { prompt: question },
+      success: function (data) {
+        let gpt_data = "";
+        gpt_data += `
                <div
                   class="list-group-item list-group-item-action d-flex gap-3 py-3"
                >
@@ -171,20 +142,16 @@
                </div>
             `;
 
-            $('#list-group').append(gpt_data);   
-            if($('.list-group-item').length % 2 == 0) {
-               $('#chat-input').attr('placeholder', 'Enter your question here...')
-            };
-         },
-      });
-   
-   }
+        $("#list-group").append(gpt_data);
+        if ($(".list-group-item").length % 2 == 0) {
+          $("#chat-input").attr("placeholder", "Enter your question here...");
+        }
+      },
+    });
+  }
 
-   $('#chat-input').change(handleChat);
-   $('#gpt-button').click(handleChat);
-
-
-   
+  $("#chat-input").change(handleChat);
+  $("#gpt-button").click(handleChat);
 </script>
 
 {% endblock %}

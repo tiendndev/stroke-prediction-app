@@ -1,3 +1,4 @@
+import uuid
 from flask_login import UserMixin
 from datetime import timezone
 from sqlalchemy.sql import func
@@ -50,11 +51,24 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     user_name = db.Column(db.String(150))
     # Cac quan he trong database (1-1, 1-n, n-n)
-    # O day su dung quan he 1-n
     # 1-1 Relationship
     notes = db.relationship("Note", backref='user', uselist=False)
+    events = db.relationship("Event", backref='user', uselist=False)
 
     def __init__(self, email, password, user_name):
         self.email = email
         self.password = password
         self.user_name = user_name
+
+class Event(db.Model, UserMixin):
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    start_event = db.Column(db.DateTime)
+    end_event = db.Column(db.DateTime)
+
+    def __init__(self, user_id, title, start_event, end_event):
+        self.user_id = user_id
+        self.title = title
+        self.start_event = start_event
+        self.end_event = end_event

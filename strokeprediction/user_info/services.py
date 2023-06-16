@@ -1,11 +1,12 @@
-from flask import request, jsonify, flash, redirect, url_for
+import uuid
+from flask import render_template, request, jsonify, flash, redirect, url_for
 from flask_login import current_user
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash
 
 from strokeprediction.extension import db
 from strokeprediction.library_ma import SymptomSchema
-from strokeprediction.models import Note, User
+from strokeprediction.models import Note, User, Event
 
 symptom_schema = SymptomSchema()
 symptoms_schema = SymptomSchema(many=True)
@@ -153,3 +154,55 @@ def update_patient_password_service():
     db.session.commit()
 
     return jsonify({'message': 'Password updated successfully'})
+
+
+
+def event_index_service():
+    user_id = current_user.id
+    calendar = Event.query.filter_by(user_id=user_id).order_by(Event.id).all()
+    return render_template('calendar.html', calendar=calendar, user=current_user)
+
+
+def event_insert_service():
+    if request.method == 'POST':
+        user_id = User.query.get(current_user.id).id
+        title = request.form['title']
+        start = request.form['start']
+        end = request.form['end']
+        event = Event(user_id=user_id, title=title, start_event=start, end_event=end)
+        db.session.add(event)
+        db.session.commit()
+        msg = 'success'
+        return jsonify(msg)
+    
+
+def event_update_service():
+    if request.method == 'POST':
+        id = request.form['id']
+        title = request.form['title']
+        start = request.form['start']
+        end = request.form['end']
+        event = Event.query.get(id)
+        if event:
+            event.title = title
+            event.start_event = start
+            event.end_event = end
+            db.session.commit()
+            msg = 'success'
+        else:
+            msg = 'error'
+        return jsonify(msg)
+    
+
+
+def event_ajax_delete_service():
+    if request.method == 'POST':
+        id = request.form['id']
+        event = Event.query.get(id)
+        if event:
+            db.session.delete(event)
+            db.session.commit()
+            msg = 'Record deleted successfully'
+        else:
+            msg = 'Record not found'
+        return jsonify(msg)

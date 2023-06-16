@@ -1,200 +1,172 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}Form Page{% endblock %}
+{% block title %}Form Page{% endblock %} 
 
 {% block content %}
 
-<link rel="stylesheet" href="{{url_for('static', filename='styles/data-input.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/data-input.css')}}" />
 
 <div class="height-100vh">
-    <div class="container">
-        <h2 class="mt-lg-5 mb-sm-5">Please enter the following information</h2>
-        <form action="" method="post">
+  <div class="container">
+    <h2 class="mt-lg-5 mb-sm-5">Please enter the following information</h2>
+    <form action="" method="post">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="exampleFormControlInput1" class="form-label">Full name</label>
+          <input
+            type="text"
+            name="fullname"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Enter your full name..."
+            required />
+        </div>
+        <div class="col-md-6">
+          <label for="exampleFormControlInput1" class="form-label">Age</label>
+          <input
+            type="number"
+            name="age"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Enter your age..."
+            required />
+        </div>
+      </div>
 
-            <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="exampleFormControlInput1" class="form-label">Full name</label>
-                        <input 
-                            type="text" 
-                            name="fullname" 
-                            class="form-control" 
-                            id="exampleFormControlInput1"
-                            placeholder="Enter your full name..." 
-                            required
-                        >
-                    </div>
-                <div class="col-md-6">
-                    <label for="exampleFormControlInput1" class="form-label">Age</label>
-                    <input 
-                        type="number" 
-                        name="age" 
-                        class="form-control" 
-                        id="exampleFormControlInput1"
-                        placeholder="Enter your age..." 
-                        required
-                    >
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="input-group mb-3 col-6">
-                    <label class="input-group-text" for="specificSizeSelect">Gender</label>
-                    <select class="form-select col-6" id="specificSizeSelect" name="gender" required>
-                        <option selected>Choose...</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-
-                <div class="input-group mb-3 col-6">
-                    <label class="input-group-text" for="specificSizeSelect">Hypertension</label>
-                    <select class="form-select col-6" id="specificSizeSelect" name="hypertension" required>
-                        <option selected>Choose...</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="input-group mb-3 col-6">
-                    <label class="input-group-text" for="specificSizeSelect">Heart disease</label>
-                    <select class="form-select col-5" id="specificSizeSelect" name="heart_disease" required>
-                        <option selected>Choose...</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </div>
-
-                <div class="input-group mb-3 col-6">
-                    <label class="input-group-text" for="specificSizeSelect">Ever married</label>
-                    <select class="form-select col-6" id="specificSizeSelect" name="ever_married" required>
-                        <option selected>Choose...</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="input-group mb-3 col-6">
-                    <label class="input-group-text" for="specificSizeSelect">Resident type</label>
-                    <select class="form-select col-5" id="specificSizeSelect" name="residence_type" required>
-                        <option selected>Choose...</option>
-                        <option value="urban">Urban</option>
-                        <option value="rural">Rural</option>
-                    </select>
-                </div>
-
-                <div class="input-group mb-3 col-6">
-                    <label class="input-group-text" for="specificSizeSelect">Work type</label>
-                    <select class="form-select col-6" id="specificSizeSelect" name="work_type" required>
-                        <option selected>Choose...</option>
-                        <option value="privated">Privated</option>
-                        <option value="self_employed">Self employed</option>
-                        <option value="govt_job">Govt job</option>
-                        <option value="children">Children</option>
-                        <option value="never_worked">Never worked</option>
-                    </select>
-                </div>
-            </div>
-
-
-            <div class="row g-3">
-                <div class="input-group mb-3 col-6">
-                    <label class="input-group-text" for="specificSizeSelect">Smoking status</label>
-                    <select class="form-select col-6" id="specificSizeSelect" name="smoking_status" required>
-                        <option selected>Choose...</option>
-                        <option value="formerly_smoked">formerly_smoked</option>
-                        <option value="never_smoked">Never smoked</option>
-                        <option value="smokes">Smokes</option>
-                    </select>
-                </div>
-
-                <div class="col-sm">
-                    <label class="visually-hidden" for="autoSizingInput">Avg glucose level</label>
-                    <input 
-                        type="number"
-                        step="0.001"
-                        class="form-control"
-                        id="autoSizingInput"
-                        placeholder="Your Average Glucose..."
-                        name="avg_glucose_level"
-                        required
-                    >
-                </div>
-
-                <div class="col-sm">
-                    <label class="visually-hidden" for="autoSizingInput">Bmi</label>
-                    <input 
-                        type="number"
-                        step="0.001"
-                        class="form-control"
-                        id="autoSizingInput"
-                        placeholder="Your BMI..."
-                        name="bmi"
-                        required
-                    >
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary col-xs-2 mt-3 pull-right">Accept</button>
-
-        </form>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="bmi-calculator">
-                        <div class="result">
-                            <div class="result-text">
-                                <h1><span id="bmiValue">24.8 </span>kg/m2</h1><small id="bmid">Normal</small>
-                            </div>
-                        </div>
-                        <div class="calculator">
-                            <h2 class="text-center calculator-title">You can calculate your BMI here</h2>
-                            <hr class="calculator-hr" />
-                            <div class="height">
-                                <input class="value_range" id="height" type="range" value="182" min="100" max="250" step="1" />
-                                <div class="label-height field-text">0</div>
-                            </div>
-                            <div class="weight">
-                                <input class="value_range" id="weight" type="range" value="82" min="0" max="250" step="1" />
-                                <div class="label-weight field-text">0</div>
-                            </div>
-                            <div class="submit">
-                                <input class="submit" type="submit" id="submit" value="Calculate" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="row">
+        <div class="input-group mb-3 col-6">
+          <label class="input-group-text" for="specificSizeSelect">Gender</label>
+          <select class="form-select col-6" id="specificSizeSelect" name="gender" required>
+            <option selected>Choose...</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
 
-    </div>
+        <div class="input-group mb-3 col-6">
+          <label class="input-group-text" for="specificSizeSelect">Hypertension</label>
+          <select class="form-select col-6" id="specificSizeSelect" name="hypertension" required>
+            <option selected>Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="input-group mb-3 col-6">
+          <label class="input-group-text" for="specificSizeSelect">Heart disease</label>
+          <select class="form-select col-5" id="specificSizeSelect" name="heart_disease" required>
+            <option selected>Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3 col-6">
+          <label class="input-group-text" for="specificSizeSelect">Ever married</label>
+          <select class="form-select col-6" id="specificSizeSelect" name="ever_married" required>
+            <option selected>Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-group mb-3 col-6">
+          <label class="input-group-text" for="specificSizeSelect">Resident type</label>
+          <select class="form-select col-5" id="specificSizeSelect" name="residence_type" required>
+            <option selected>Choose...</option>
+            <option value="urban">Urban</option>
+            <option value="rural">Rural</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3 col-6">
+          <label class="input-group-text" for="specificSizeSelect">Work type</label>
+          <select class="form-select col-6" id="specificSizeSelect" name="work_type" required>
+            <option selected>Choose...</option>
+            <option value="privated">Privated</option>
+            <option value="self_employed">Self employed</option>
+            <option value="govt_job">Govt job</option>
+            <option value="children">Children</option>
+            <option value="never_worked">Never worked</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="input-group mb-3 col-6">
+          <label class="input-group-text" for="specificSizeSelect">Smoking status</label>
+          <select class="form-select col-6" id="specificSizeSelect" name="smoking_status" required>
+            <option selected>Choose...</option>
+            <option value="formerly_smoked">formerly_smoked</option>
+            <option value="never_smoked">Never smoked</option>
+            <option value="smokes">Smokes</option>
+          </select>
+        </div>
+
+        <div class="col-sm">
+          <label class="visually-hidden" for="autoSizingInput">Avg glucose level</label>
+          <input
+            type="number"
+            step="0.001"
+            class="form-control"
+            id="autoSizingInput"
+            placeholder="Your Average Glucose..."
+            name="avg_glucose_level"
+            required />
+        </div>
+
+        <div class="col-sm">
+          <label class="visually-hidden" for="autoSizingInput">Bmi</label>
+          <input
+            type="number"
+            step="0.001"
+            class="form-control"
+            id="autoSizingInput"
+            placeholder="Your BMI..."
+            name="bmi"
+            required />
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary col-xs-2 mt-3 pull-right">Accept</button>
+    </form>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="bmi-calculator">
+            <div class="result">
+              <div class="result-text">
+                <h1><span id="bmiValue">24.8 </span>kg/m2</h1>
+                <small id="bmid">Normal</small>
+              </div>
+            </div>
+            <div class="calculator">
+              <h2 class="text-center calculator-title">You can calculate your BMI here</h2>
+              <hr class="calculator-hr" />
+              <div class="height">
+                <input class="value_range" id="height" type="range" value="182" min="100" max="250" step="1" />
+                <div class="label-height field-text">0</div>
+              </div>
+              <div class="weight">
+                <input class="value_range" id="weight" type="range" value="82" min="0" max="250" step="1" />
+                <div class="label-weight field-text">0</div>
+              </div>
+              <div class="submit">
+                <input class="submit" type="submit" id="submit" value="Calculate" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="{{url_for('static', filename='data-input.js')}}"></script>
-
-<!-- <script>
-    // document.querySelector(".calculate-btn").addEventListener('click', () => {
-    //     let calcResult = document.querySelector('.calc-result');
-    //     let height = parseFloat(document.querySelector('.height-input').value * Math.pow(10, -2));
-    //     let weigh = parseFloat(document.querySelector('.weight-input').value);
-    //     let bmi = weigh / (height * height);
-    //     console.log(calcResult)
-    //     calcResult.innerText = "BMI = " + bmi.toFixed(1);
-    // })
-
-    // document.querySelector('.clearCalc-btn').addEventListener('click', () => {
-    //     document.querySelector('.height-input').value = "";
-    //     document.querySelector('.weight-input').value = "";
-    // })
-
-</script> -->
 
 {% endblock %}
