@@ -1,4 +1,5 @@
 from flask import request, jsonify, flash, redirect, url_for
+from flask_login import current_user
 from sqlalchemy import func
 
 from strokeprediction.extension import db
@@ -74,3 +75,51 @@ def delete_symptom_by_id_service():
             return jsonify({"message": "Can not delete symptom!"}), 400
     else:
         return jsonify({"message": "Not found symptom!"}), 400
+
+
+# Get symptoms by user_email
+def get_symptoms_by_patient_service(user_email):
+    symptom = Note.query.join(User).filter(
+        func.lower(User.email) == user_email.lower()
+    ).all()
+    if symptom:
+        return symptoms_schema.jsonify(symptom)
+    else:
+        return jsonify({"message": f"Not found symptoms by patient {user_email}"}), 404
+    
+
+def get_user_email_by_id_service(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    
+    return jsonify({'email': user.email})
+
+
+def get_patient_medical_records():
+    patient = current_user
+
+    if patient.notes:
+        medical_records_data = {
+            'id': patient.notes.id,
+            'fullname': patient.notes.fullname,
+            'gender': patient.notes.gender,
+            'age': patient.notes.age,
+            'hypertension': patient.notes.hypertension,
+            'heart_disease': patient.notes.heart_disease,
+            'ever_married': patient.notes.ever_married,
+            'residence_type': patient.notes.residence_type,
+            'avg_glucose_level': patient.notes.avg_glucose_level,
+            'bmi': patient.notes.bmi,
+            'work_type': patient.notes.work_type,
+            'smoking_status': patient.notes.smoking_status,
+            'stroke': patient.notes.stroke,
+            'percentageStroke': patient.notes.percentageStroke,
+        }
+    else:
+        medical_records_data = None
+
+    return jsonify({
+        'patient': patient.user_name,
+        'medical_records': medical_records_data
+    })

@@ -9,3 +9,7 @@ class SymptomSchema(ma.Schema):
             "ever_married", "work_type", "residence_type",
             "avg_glucose_level", "bmi", "smoking_status", "stroke", "percentageStroke"
         )
+
+class UserSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "email", "password", "user_name")

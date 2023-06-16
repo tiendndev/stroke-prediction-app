@@ -51,7 +51,8 @@ class User(db.Model, UserMixin):
     user_name = db.Column(db.String(150))
     # Cac quan he trong database (1-1, 1-n, n-n)
     # O day su dung quan he 1-n
-    notes = db.relationship("Note")
+    # 1-1 Relationship
+    notes = db.relationship("Note", backref='user', uselist=False)
 
     def __init__(self, email, password, user_name):
         self.email = email

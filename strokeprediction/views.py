@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, render_template, flash, request, redirect, url_for
 from flask_login import login_required, current_user
 
-from .models import Note
+from .models import Note, User
 from . import db
 from strokeprediction.predict import prediction_model
 from strokeprediction.RandomForestModel.randomForest import predict_Stroke
@@ -20,7 +20,8 @@ def home():
 @login_required
 def form():
     if request.method == "POST":
-        if (db.session.query(Note.id).filter_by(id=1).first()):
+        user_id = current_user.id
+        if (db.session.query(Note.id).filter_by(user_id=user_id).first()):
             flash("You submitted data!", category="error")
             return redirect(url_for("views.RetrivePatient"))
         # Lay noi dung tu input[name="fullname"],...

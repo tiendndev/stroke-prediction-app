@@ -78,7 +78,14 @@ def logout():
     # Khi da su dung Blueprint o tren thi phai user.login
     return redirect(url_for("user.login"))
 
-
+# @user.route("/email", methods=["GET"])
+# # @login_required
+# def get_user_email():
+#     user = current_user
+#     if user:
+#         return jsonify({"email": user.email})
+#     else:
+#         return jsonify({"message": "User not found"}), 404
 # @user.route("/setting/delete-user", methods=["POST", "GET", "DELETE"])
 # def deleteUser():
 #     if request.method == "POST":
