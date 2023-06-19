@@ -13,5 +13,5 @@ python-dotenv
 flask
 gunicorn==20.1.0
 waitress
-mysql-python
 flask-mysqldb
+mysqlclient
