@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template, request
-from flask_login import login_required, current_user
+from flask_login import login_required
 
 from .services import (
     add_symptom_service, 

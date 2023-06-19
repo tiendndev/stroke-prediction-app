@@ -1,5 +1,5 @@
 import uuid
-from flask import render_template, request, jsonify, flash, redirect, url_for
+from flask import render_template, request, jsonify
 from flask_login import current_user
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash
