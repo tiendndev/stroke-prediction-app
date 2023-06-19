@@ -19,7 +19,7 @@ def create_database(app):
 
 def create_app():
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = SECRET_KEY
+    app.config["SECRET_KEY"] = "strokeprediction"
 
     # Khai bao duong dan chua database va khoi tao db
     app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://admin:UWYHHhAj@mysql-132381-0.cloudclusters.net:19122/strokeprediction'
