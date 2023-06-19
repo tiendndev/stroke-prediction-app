@@ -22,7 +22,7 @@ def create_app():
     app.config["SECRET_KEY"] = SECRET_KEY
 
     # Khai bao duong dan chua database va khoi tao db
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:304155@127.0.0.1/strokeprediction'
+    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:304155@localhost:3306/strokeprediction'
     db.init_app(app)
 
     """ Khoi tao api """
