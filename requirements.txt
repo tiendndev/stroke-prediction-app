@@ -11,3 +11,5 @@ flask_marshmallow
 flask-login
 python-dotenv
 flask
+gunicorn==20.1.0
+waitress
