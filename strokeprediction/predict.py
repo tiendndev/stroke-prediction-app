@@ -6,11 +6,11 @@ import numpy as np
 
 def prediction_model():
     classes = ['Normal', 'Stroke']
-    model_path = "strokeprediction\h5\model.h5"
+    model_path = ".\strokeprediction\h5\model.h5"
     new_model = load_model(model_path)
 
     img = request.files["file"]
-    image_path = "strokeprediction\static\img\img" + img.filename
+    image_path = ".\strokeprediction\static\img\img" + img.filename
     image_path = image_path.replace(" ", "")
     img.save(image_path)
     test_image = load_img(image_path, target_size=(224, 224, 3))
