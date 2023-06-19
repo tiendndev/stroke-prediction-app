@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
    /*===== LINK ACTIVE =====*/
    const linkColor = document.querySelectorAll('.nav_link');
-   let current_route = window.location.href.slice(21);
+   let local_route = window.location.href.slice(21);
    let ngrok_route = window.location.href.slice(39);
+   let render_route = window.location.href.slice(37);
 
    linkColor.forEach((l) => {
       switch (current_route) {
