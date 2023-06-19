@@ -13,10 +13,6 @@ DB_NAME = os.environ.get("DB_NAME")
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 def create_database(app):
-    # if not os.path.exists("strokeprediction/" + DB_NAME):
-    #     with app.app_context():
-    #         db.create_all()
-    #     print("Created Database")
         with app.app_context():
              db.create_all()
         print("Created Database")
@@ -26,7 +22,6 @@ def create_app():
     app.config["SECRET_KEY"] = SECRET_KEY
 
     # Khai bao duong dan chua database va khoi tao db
-    # app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
     app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:304155@127.0.0.1/strokeprediction'
     db.init_app(app)
 
