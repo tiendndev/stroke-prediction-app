@@ -1,4 +1,4 @@
-/strokeprediction/h5
+# /strokeprediction/h5
 /strokeprediction/static/img
 
 strokeprediction/KnnModel/healthcare-dataset-stroke-data.csv
@@ -7,3 +7,6 @@ strokeprediction/.env
 .env
 strokeprediction\.env
 /.env
+
+/strokeprediction/user_info/__pycache__
+/strokeprediction/RandomForestModel/__pycache__
