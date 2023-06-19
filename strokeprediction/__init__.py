@@ -27,7 +27,7 @@ def create_app():
 
     # Khai bao duong dan chua database va khoi tao db
     # app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:304155@localhost/strokeprediction'
+    app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:304155@localhost/strokeprediction'
     db.init_app(app)
 
     """ Khoi tao api """
