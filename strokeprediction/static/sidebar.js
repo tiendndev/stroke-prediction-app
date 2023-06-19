@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
    let render_route = window.location.href.slice(37);
 
    linkColor.forEach((l) => {
-      switch (current_route) {
+      switch (render_route) {
          case '/data':
             l.classList.remove('active');
             linkColor[1].classList.add('active');
