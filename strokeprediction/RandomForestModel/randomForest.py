@@ -1,7 +1,7 @@
 import joblib
 import numpy as np
 
-modelPath = ".\strokeprediction\RandomForestModel\RandomForestStrokePredict.joblib"
+modelPath = "./strokeprediction/RandomForestModel/RandomForestStrokePredict.joblib"
 
 def predict_Stroke(age, hypertension, heart_disease, ever_married, Residence_type, avg_glucose_level,
                    bmi, gender_Male, gender_Other, work_type_Never_worked, work_type_Private, work_type_Self_employed,
