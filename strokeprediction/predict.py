@@ -17,11 +17,11 @@ def prediction_model():
     test_image = img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
 
-    print("img_url: ", image_path[25:])
+    print("img_url: ", image_path[26:])
 
     result = new_model.predict(test_image)
     result1 = result[0]
     for y in range(2):
         if result1[y] == 1.:
             break
-    return [classes[y], image_path[25:]]
+    return [classes[y], image_path[26:]]

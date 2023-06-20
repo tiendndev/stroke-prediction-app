@@ -1,5 +1,5 @@
 # /strokeprediction/h5
-/strokeprediction/static/img
+# /strokeprediction/static/img
 
 strokeprediction/KnnModel/healthcare-dataset-stroke-data.csv
 
