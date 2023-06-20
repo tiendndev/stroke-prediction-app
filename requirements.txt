@@ -14,4 +14,4 @@ flask
 gunicorn==20.1.0
 waitress
 flask-mysqldb
-mysqlclient
+uvicorn
