@@ -20,6 +20,108 @@
   /* transition: all .2s linear; */
 }
 
+body {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(https://wallpapershome.com/images/wallpapers/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+body::before {
+  display: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.45) 100%);
+  -webkit-backdrop-filter: saturate(3);
+  backdrop-filter: saturate(3);
+}
+
+.app {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1240px;
+  max-height: 900px;
+  width: 100%;
+  height: 95vh;
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  z-index: 10;
+
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  /* background: linear-gradient(#dae2f8, #d6a4a4); */
+  /* background: rgb(255 255 255 / 31%); */
+  background: rgba(16 18 27 / 40%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.app:nth-child(2) {
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.contents {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.form-container {
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.video-bg {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-bg::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.45) 100%);
+  -webkit-backdrop-filter: saturate(3);
+  backdrop-filter: saturate(3);
+}
+
+.video-bg video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+label {
+  font-weight: 500;
+}
+
 .close-btn {
   display: block;
   width: 26px;
@@ -27,6 +129,73 @@
   text-align: center;
   line-height: 26px;
 }
+
+.l-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  /* background-color: var(--first-color); */
+  background: rgba(16 18 27 / 40%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.5rem 1rem 0 0;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+  width: calc(var(--nav-width) + 156px);
+  transition: 0.5s;
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.gpt-hide-button {
+  cursor: pointer;
+  display: none;
+}
+
+.gpt-hide-button i {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.gpt-show-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 12px;
+  cursor: pointer;
+  display: none;
+}
+
+.gpt-show-button i {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  animation: rotate infinite;
+  animation-duration: 3s;
+  /* Thời gian một vòng quay */
+  animation-timing-function: linear;
+  /* Hình thức thời gian của animation */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 .close-btn:active .alert .alert-success .alter-dismissable .fade .show {
   display: none;
@@ -36,8 +205,8 @@
   height: 100vh !important;
 }
 
-side-bar-bs {
-  position: relative;
+.side-bar-bs {
+  position: absolute;
   margin: var(--header-height) 0 0 0;
   padding: 0 1rem;
   font-family: var(--body-font);
@@ -51,12 +220,17 @@ a {
 
 p {
   margin-bottom: 0px;
+  font-weight: 500;
+}
+
+span {
+  font-weight: 500;
 }
 
 .header {
   width: 100%;
   height: var(--header-height);
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   display: flex;
@@ -68,10 +242,16 @@ p {
   transition: 0.5s;
 }
 
+.header-buttons {
+  display: flex;
+  align-items: center;
+}
+
 .header_toggle {
   font-size: 1.5rem;
   cursor: pointer;
   margin-left: 20px;
+  visibility: hidden;
 }
 
 .header_img {
@@ -79,6 +259,7 @@ p {
   height: 35px;
   display: flex;
   justify-content: center;
+  margin-right: 20px;
   cursor: pointer;
 }
 
@@ -103,7 +284,7 @@ p {
 .menu {
   position: absolute;
   top: 70px;
-  right: 32px;
+  right: 92px;
   border-radius: 5px;
   padding: 12px 0;
   background: #fff;
@@ -125,13 +306,15 @@ p {
 .menu-option {
   position: absolute;
   top: -2px;
-  right: 148px;
+  left: 120px;
   width: 110px;
   padding-left: 0px;
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   display: none;
+  overflow: auto;
+  z-index: 100;
 }
 
 .menu-option li {
@@ -174,26 +357,6 @@ p {
   margin-left: 10px;
 }
 
-.l-navbar {
-  position: fixed;
-  top: 0;
-  left: -30%;
-  width: var(--nav-width);
-  height: 100%;
-  background-color: var(--first-color);
-  padding: 0.5rem 1rem 0 0;
-  transition: 0.5s;
-  z-index: var(--z-fixed);
-}
-
-.nav {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-}
-
 .nav_logo,
 .nav_link {
   display: grid;
@@ -233,11 +396,11 @@ p {
 }
 
 .show {
-  left: 0;
+  display: block !important;
 }
 
 .body-pd {
-  padding-left: var(--nav-width);
+  /* padding-left: var(--nav-width); */
 }
 
 .active {
@@ -263,11 +426,6 @@ a#login {
 
 a#signUp {
   color: #03e9f4;
-}
-
-.container {
-  padding-top: 56px;
-  max-width: 760px;
 }
 
 .navbar {
@@ -303,6 +461,30 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
   width: 94%;
 }
 
+/* GPT */
+button#gpt-button {
+  width: 84px;
+}
+
+.input-group.mb-3.col-6 {
+  box-shadow: 12px 14px 11px rgba(0, 0, 0, 0.1);
+}
+
+.gpt-layout {
+  /* width: 50% !important; */
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-left: 20px;
+}
+
+.app:first-child {
+  width: 160%;
+}
+
+.desktop-btn {
+  display: block !important;
+}
+
 /* Responsive */
 @media screen and (min-width: 768px) {
   side-bar-bs {
@@ -329,17 +511,38 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
     padding: 1rem 1rem 0 0;
   }
 
-  .show {
-    width: calc(var(--nav-width) + 156px);
-  }
-
   .body-pd {
     transition: 0.5s;
     padding-left: calc(var(--nav-width) + 156px);
   }
 }
 
+/* Mobile */
 @media (max-width: 46.1875em) {
+  .header_toggle {
+    visibility: visible;
+  }
+
+  .gpt-layout {
+    /* width: 100% !important; */
+    display: none;
+  }
+
+  .app:first-child {
+    display: flex;
+  }
+
+  .gpt-show-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  .gpt-hide-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .alert.alert-success.alter-dismissable.fade.show {
     position: relative;
     top: 0;
@@ -350,10 +553,29 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
     width: 97% !important;
   }
 
+  body {
+    padding: 14px;
+  }
+
   .container {
-    position: absolute;
     padding-top: 0px !important;
     padding-bottom: 20px !important;
+  }
+
+  .contents {
+    flex-wrap: wrap;
+  }
+
+  .l-navbar {
+    width: 100%;
+    top: 48px;
+    display: none;
+    background-color: var(--first-color);
+  }
+
+  .form-container {
+    padding-left: 5px;
+    padding-right: 0;
   }
 
   h2.mt-lg-5.mb-sm-5 {
@@ -366,10 +588,14 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
   }
 
   .menu {
-    width: 100vh;
+    overflow: hidden;
+    overflow-y: hidden;
+    width: 100%;
     height: 100vh;
     top: 48px;
     left: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   .menu-item {
@@ -388,4 +614,31 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
   .menu-option li {
     padding: 10px 14px 0px;
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(1 2 3 / 40%);
+  border-radius: 10px;
+}
+
+.modal-backdrop {
+  z-index: 9;
+}
+
+.modal {
+  left: 112px;
+}
+
+.modal-header .close {
+  width: 28px;
+  height: 28px;
+}
+
+.light-mode {
+  background-color: rgb(255 255 255 / 74%);
 }

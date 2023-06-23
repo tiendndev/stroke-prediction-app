@@ -1,171 +1,438 @@
-{% extends "base.html" %} 
-
-{% block title %}Form Page{% endblock %} 
-
-{% block content %}
+{% extends "base.html" %} {% block title %}Form Page{% endblock %} {% block content %}
 
 <link rel="stylesheet" href="{{url_for('static', filename='styles/data-input.css')}}" />
 
-<div class="height-100vh">
-  <div class="container">
-    <h2 class="mt-lg-5 mb-sm-5">Please enter the following information</h2>
-    <form action="" method="post">
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="exampleFormControlInput1" class="form-label">Full name</label>
-          <input
-            type="text"
-            name="fullname"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Enter your full name..."
-            required />
-        </div>
-        <div class="col-md-6">
-          <label for="exampleFormControlInput1" class="form-label">Age</label>
-          <input
-            type="number"
-            name="age"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Enter your age..."
-            required />
-        </div>
+<div class="form-container">
+  <h2 class="mt-lg-5 mb-sm-5"><br />Nhập đầy đủ thông tin dưới đây để chẩn đoán</h2>
+  <form action="" method="post">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="exampleFormControlInput1" class="form-label">Họ và tên</label>
+        <input type="text" name="fullname" class="form-control" id="exampleFormControlInput1" placeholder="Nhập tên..." required />
+      </div>
+      <div class="col-md-6">
+        <label for="exampleFormControlInput1" class="form-label">Tuổi</label>
+        <input type="number" name="age" class="form-control" id="exampleFormControlInput1" placeholder="Nhập tuổi..." required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Giới tính</label>
+        <select class="form-select col-6" id="specificSizeSelect" name="gender" required>
+          <option selected>Chọn...</option>
+          <option value="male">Nam</option>
+          <option value="female">Nữ</option>
+        </select>
       </div>
 
-      <div class="row">
-        <div class="input-group mb-3 col-6">
-          <label class="input-group-text" for="specificSizeSelect">Gender</label>
-          <select class="form-select col-6" id="specificSizeSelect" name="gender" required>
-            <option selected>Choose...</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Huyết áp</label>
+        <select class="form-select col-6" id="specificSizeSelect" name="hypertension" required>
+          <option selected>Chọn...</option>
+          <option value="1">Có</option>
+          <option value="0">Không</option>
+        </select>
+      </div>
+    </div>
 
-        <div class="input-group mb-3 col-6">
-          <label class="input-group-text" for="specificSizeSelect">Hypertension</label>
-          <select class="form-select col-6" id="specificSizeSelect" name="hypertension" required>
-            <option selected>Choose...</option>
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-          </select>
-        </div>
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Bệnh tim</label>
+        <select class="form-select col-5" id="specificSizeSelect" name="heart_disease" required>
+          <option selected>Chọn...</option>
+          <option value="1">Có</option>
+          <option value="0">Không</option>
+        </select>
       </div>
 
-      <div class="row">
-        <div class="input-group mb-3 col-6">
-          <label class="input-group-text" for="specificSizeSelect">Heart disease</label>
-          <select class="form-select col-5" id="specificSizeSelect" name="heart_disease" required>
-            <option selected>Choose...</option>
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-          </select>
-        </div>
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Tình trạng hôn nhân</label>
+        <select class="form-select col-6" id="specificSizeSelect" name="ever_married" required>
+          <option selected>Chọn...</option>
+          <option value="1">Đã kết hôn</option>
+          <option value="0">Chưa kết hôn</option>
+        </select>
+      </div>
+    </div>
 
-        <div class="input-group mb-3 col-6">
-          <label class="input-group-text" for="specificSizeSelect">Ever married</label>
-          <select class="form-select col-6" id="specificSizeSelect" name="ever_married" required>
-            <option selected>Choose...</option>
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-          </select>
-        </div>
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Khu vực sinh sống</label>
+        <select class="form-select col-5" id="specificSizeSelect" name="residence_type" required>
+          <option selected>Chọn...</option>
+          <option value="urban">Thành thị</option>
+          <option value="rural">Nông thôn</option>
+        </select>
       </div>
 
-      <div class="row">
-        <div class="input-group mb-3 col-6">
-          <label class="input-group-text" for="specificSizeSelect">Resident type</label>
-          <select class="form-select col-5" id="specificSizeSelect" name="residence_type" required>
-            <option selected>Choose...</option>
-            <option value="urban">Urban</option>
-            <option value="rural">Rural</option>
-          </select>
-        </div>
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Loại hình công việc</label>
+        <select class="form-select col-6" id="specificSizeSelect" name="work_type" required>
+          <option selected>Chọn...</option>
+          <option value="privated">Tư nhân</option>
+          <option value="self_employed">Làm việc tự do</option>
+          <option value="govt_job">Công việc nhà nước</option>
+          <option value="children">Còn đi học/trẻ em</option>
+          <option value="never_worked">Chưa đi làm</option>
+        </select>
+      </div>
+    </div>
 
-        <div class="input-group mb-3 col-6">
-          <label class="input-group-text" for="specificSizeSelect">Work type</label>
-          <select class="form-select col-6" id="specificSizeSelect" name="work_type" required>
-            <option selected>Choose...</option>
-            <option value="privated">Privated</option>
-            <option value="self_employed">Self employed</option>
-            <option value="govt_job">Govt job</option>
-            <option value="children">Children</option>
-            <option value="never_worked">Never worked</option>
-          </select>
-        </div>
+    <div class="row g-3">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Tình trạng hút thuốc</label>
+        <select class="form-select col-6" id="specificSizeSelect" name="smoking_status" required>
+          <option selected>Chọn...</option>
+          <option value="formerly_smoked">Đã từng hút trước đây</option>
+          <option value="never_smoked">Chưa bao giờ hút thuốc</option>
+          <option value="smokes">Đang hút thuốc</option>
+        </select>
       </div>
 
-      <div class="row g-3">
-        <div class="input-group mb-3 col-6">
-          <label class="input-group-text" for="specificSizeSelect">Smoking status</label>
-          <select class="form-select col-6" id="specificSizeSelect" name="smoking_status" required>
-            <option selected>Choose...</option>
-            <option value="formerly_smoked">formerly_smoked</option>
-            <option value="never_smoked">Never smoked</option>
-            <option value="smokes">Smokes</option>
-          </select>
-        </div>
-
-        <div class="col-sm">
-          <label class="visually-hidden" for="autoSizingInput">Avg glucose level</label>
-          <input
-            type="number"
-            step="0.001"
-            class="form-control"
-            id="autoSizingInput"
-            placeholder="Your Average Glucose..."
-            name="avg_glucose_level"
-            required />
-        </div>
-
-        <div class="col-sm">
-          <label class="visually-hidden" for="autoSizingInput">Bmi</label>
-          <input
-            type="number"
-            step="0.001"
-            class="form-control"
-            id="autoSizingInput"
-            placeholder="Your BMI..."
-            name="bmi"
-            required />
-        </div>
+      <div class="col-sm">
+        <label class="visually-hidden" for="autoSizingInput">Lượng đường trung bình trong máu</label>
+        <input
+          type="number"
+          step="0.001"
+          class="form-control"
+          id="autoSizingInput"
+          placeholder="Lượng đường trung bình trong máu..."
+          name="avg_glucose_level"
+          required />
       </div>
 
-      <button type="submit" class="btn btn-primary col-xs-2 mt-3 pull-right">Accept</button>
-    </form>
+      <div class="col-sm">
+        <label class="visually-hidden" for="autoSizingInput">BMI</label>
+        <input type="number" step="0.001" class="form-control" id="autoSizingInput" placeholder="Your BMI..." name="bmi" required />
+      </div>
+    </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="bmi-calculator">
-            <div class="result">
-              <div class="result-text">
-                <h1><span id="bmiValue">24.8 </span>kg/m2</h1>
-                <small id="bmid">Normal</small>
-              </div>
-            </div>
-            <div class="calculator">
-              <h2 class="text-center calculator-title">You can calculate your BMI here</h2>
-              <hr class="calculator-hr" />
-              <div class="height">
-                <input class="value_range" id="height" type="range" value="182" min="100" max="250" step="1" />
-                <div class="label-height field-text">0</div>
-              </div>
-              <div class="weight">
-                <input class="value_range" id="weight" type="range" value="82" min="0" max="250" step="1" />
-                <div class="label-weight field-text">0</div>
-              </div>
-              <div class="submit">
-                <input class="submit" type="submit" id="submit" value="Calculate" />
-              </div>
-            </div>
-          </div>
-        </div>
+    <button type="submit" class="btn btn-primary col-xs-2 mt-3 pull-right">Dự đoán</button>
+  </form>
+
+  <div class="bmi-calculator">
+    <div class="result">
+      <div class="result-text">
+        <h1><span id="bmiValue">24.8 </span>kg/m2</h1>
+        <small id="bmid">Bình thường</small>
+      </div>
+    </div>
+    <div class="calculator">
+      <h2 class="text-center calculator-title">Bạn có thể tính chỉ số BMI tại đây</h2>
+      <hr class="calculator-hr" />
+      <div class="height">
+        <input class="value_range" id="height" type="range" value="182" min="100" max="250" step="1" />
+        <div class="label-height field-text">0</div>
+      </div>
+      <div class="weight">
+        <input class="value_range" id="weight" type="range" value="82" min="0" max="250" step="1" />
+        <div class="label-weight field-text">0</div>
+      </div>
+      <div class="submit">
+        <input class="submit" type="submit" id="submit" value="Tính toán" />
       </div>
     </div>
   </div>
+  <div class="form-container">
+    <h2 class="mt-lg-5 mb-sm-3" class="font-weight-bold">Dự đoán bệnh đột quỵ</h2>
+    <p class="mb-sm-3">
+      Ứng dụng này sử dụng nhiều thuật toán AI khác nhau để chỉ ra nguy cơ đột quỵ. Nếu nghi ngờ đột quỵ, hãy nhanh chóng đến bác
+      sĩ.
+    </p>
+    <p class="mb-sm-3">Đã dự đoán xong</p>
+    <p>Tỉ lệ nguy cơ bị đột quỵ của bạn là:</p>
+    <h2 id="percentageStroke"></h2>
+
+    <div class="bmi-sumary row align-items-center">
+      <div class="bmi-scale col" align="center">
+        <p class="mb-4"><strong>BMI:</strong></p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="300px"
+          height="163px"
+          viewBox="0 0 300 163">
+          <g transform="translate(18,18)" style="font-family: arial, helvetica, sans-serif; font-size: 12px">
+            <defs>
+              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7"></polygon>
+              </marker>
+              <path id="curvetxt1" d="M-4 140 A140 140, 0, 0, 1, 284 140" style="fill: none"></path>
+              <path id="curvetxt2" d="M33 43.6 A140 140, 0, 0, 1, 280 140"></path>
+              <path id="curvetxt3" d="M95 3 A140 140, 0, 0, 1, 284 140"></path>
+              <path id="curvetxt4" d="M235.4 33 A140 140, 0, 0, 1, 284 140"></path>
+            </defs>
+            <path d="M0 140 A140 140, 0, 0, 1, 6.9 96.7 L140 140 Z" fill="#bc2020"></path>
+            <path d="M6.9 96.7 A140 140, 0, 0, 1, 12.1 83.1 L140 140 Z" fill="#d38888"></path>
+            <path d="M12.1 83.1 A140 140, 0, 0, 1, 22.6 63.8 L140 140 Z" fill="#ffe400"></path>
+            <path d="M22.6 63.8 A140 140, 0, 0, 1, 96.7 6.9 L140 140 Z" fill="#008137"></path>
+            <path d="M96.7 6.9 A140 140, 0, 0, 1, 169.1 3.1 L140 140 Z" fill="#ffe400"></path>
+            <path d="M169.1 3.1 A140 140, 0, 0, 1, 233.7 36 L140 140 Z" fill="#d38888"></path>
+            <path d="M233.7 36 A140 140, 0, 0, 1, 273.1 96.7 L140 140 Z" fill="#bc2020"></path>
+            <path d="M273.1 96.7 A140 140, 0, 0, 1, 280 140 L140 140 Z" fill="#8a0101"></path>
+            <path d="M45 140 A90 90, 0, 0, 1, 230 140 Z" fill="#fff"></path>
+            <circle cx="140" cy="140" r="5" fill="#333"></circle>
+            <g style="paint-order: stroke; stroke: #fff; stroke-width: 2px">
+              <text x="25" y="111" transform="rotate(-72, 25, 111)">16</text>
+              <text x="30" y="96" transform="rotate(-66, 30, 96)">17</text>
+              <text x="35" y="83" transform="rotate(-57, 35, 83)">19</text>
+              <text x="97" y="29" transform="rotate(-18, 97, 29)">25</text>
+              <text x="157" y="20" transform="rotate(12, 157, 20)">30</text>
+              <text x="214" y="45" transform="rotate(42, 214, 45)">35</text>
+              <text x="252" y="95" transform="rotate(72, 252, 95)">40</text>
+            </g>
+            <g style="font-size: 14px" class="text-chart-mode">
+              <text><textPath xlink:href="#curvetxt1" fill="#fff">Thiếu cân</textPath></text>
+              <text><textPath xlink:href="#curvetxt2" fill="#fff">Lý tưởng</textPath></text>
+              <text><textPath xlink:href="#curvetxt3" fill="#fff">Thừa cân</textPath></text>
+              <text><textPath xlink:href="#curvetxt4" fill="#fff">Béo phì</textPath></text>
+            </g>
+            <line id="line" x1="140" y1="140" x2="65" y2="140" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)">
+              <animateTransform
+                id="animateTransform"
+                attributeName="transform"
+                attributeType="XML"
+                type="rotate"
+                from="0 140 140"
+                to="0 140 140"
+                dur="1s"
+                fill="freeze"
+                repeatCount="1"></animateTransform>
+            </line>
+            <text id="calculate-result" x="67" y="120" style="font-size: 30px; font-weight: bold; color: #000"></text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="bmi-table col" align="center">
+        <p class="text-bg-info">
+          Đây là trọng lượng cơ thể được Tổ chức Y tế Thế giới (WHO) khuyến nghị dựa trên giá trị BMI cho người trưởng thành. Nó
+          được sử dụng cho cả nam và nữ, từ 20 tuổi trở lên.
+        </p>
+        <table class="table table-bordered" align="center">
+          <tbody>
+            <tr>
+              <td class="cinfoHd">Phân loại</td>
+              <td>Khoảng BMI - kg/m<sup>2</sup></td>
+            </tr>
+            <tr>
+              <td>Gầy trầm trọng</td>
+              <td align="center">&lt; 16</td>
+            </tr>
+            <tr>
+              <td>Gầy</td>
+              <td align="center">16 - 17</td>
+            </tr>
+            <tr>
+              <td>Hơi gầy</td>
+              <td align="center">17 - 18.5</td>
+            </tr>
+            <tr>
+              <td>Lý tưởng</td>
+              <td align="center">19 - 25</td>
+            </tr>
+            <tr>
+              <td>Thừa cân</td>
+              <td align="center">25 - 30</td>
+            </tr>
+            <tr>
+              <td>Béo phì cấp I</td>
+              <td align="center">30 - 35</td>
+            </tr>
+            <tr>
+              <td>Béo phì cấp II</td>
+              <td align="center">35 - 40</td>
+            </tr>
+            <tr>
+              <td>Béo phì cấp III</td>
+              <td align="center">&gt; 40</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="data-container mt-4">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Dữ liệu đã nhập</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Họ và tên</th>
+              <td id="fullname"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tuổi</th>
+              <td id="age"></td>
+            </tr>
+            <tr>
+              <th scope="row">Giới tính</th>
+              <td id="gender"></td>
+            </tr>
+            <tr>
+              <th scope="row">Huyết áp</th>
+              <td id="hypertension"></td>
+            </tr>
+            <tr>
+              <th scope="row">Bệnh tim</th>
+              <td id="heart_disease"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tình trạng hôn nhân</th>
+              <td id="ever_married"></td>
+            </tr>
+            <tr>
+              <th scope="row">Khu vực sinh sống</th>
+              <td id="residence_type"></td>
+            </tr>
+            <tr>
+              <th scope="row">Loại hình công việc</th>
+              <td id="work_type"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tình trạng hút thuốc</th>
+              <td id="smoking_status"></td>
+            </tr>
+            <tr>
+              <th scope="row">Lượng đường trung bình trong máu</th>
+              <td id="avg_glucose_level"></td>
+            </tr>
+            <tr>
+              <th scope="row">BMI</th>
+              <td id="bmi"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tình trạng đột quỵ</th>
+              <td id="stroke"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="action-btn"></div>
+  </div>
 </div>
+
+<script type="module">
+  import { HOST } from "../static/constant.js";
+
+  const actionBtn = document.querySelector(".action-btn");
+  async function logJSONData() {
+    try {
+      const response = await fetch(`${HOST}/patient/medical_records`);
+      const jsonData = await response.json();
+      if (jsonData) {
+        actionBtn.innerHTML = `
+                      <div class="d-grid gap-2">
+                          <button type="button" class="btn btn-danger pull-right mr-3 delete">Reset</button>
+                      </div>`;
+        showData(jsonData.medical_records);
+
+        const deleteBtn = document.querySelector(".delete");
+        const deleteNote = () => {
+          fetch(`${HOST}/patient-management/views/delete`, {
+            method: "DELETE",
+          }).then((res) => (window.location.href = "/form"));
+        };
+        if (deleteBtn) {
+          deleteBtn.onclick = () => {
+            if (confirm("Bạn có muốn xóa tất cả dữ liệu đã nhập?")) {
+              deleteNote();
+            }
+          };
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  logJSONData();
+
+  const $ = document.querySelector.bind(document);
+  const fullname = $("td#fullname");
+  const age = $("td#age");
+  const gender = $("td#gender");
+  const hypertension = $("td#hypertension");
+  const heart_disease = $("td#heart_disease");
+  const ever_married = $("td#ever_married");
+  const residence_type = $("td#residence_type");
+  const work_type = $("td#work_type");
+  const smoking_status = $("td#smoking_status");
+  const avg_glucose_level = $("td#avg_glucose_level");
+  const bmi = $("td#bmi");
+  const stroke = $("td#stroke");
+  const percentageStroke = $("#percentageStroke");
+
+  const showData = (data) => {
+    if (data) {
+      fullname.innerHTML = `${data.fullname}`;
+      age.innerHTML = `${data.age}`;
+      gender.innerHTML = `${data.gender}`;
+      hypertension.innerHTML = `${data.hypertension ? "Có" : "Không"}`;
+      heart_disease.innerHTML = `${data.heart_disease ? "Có" : "Không"}`;
+      ever_married.innerHTML = `${data.ever_married ? "Đã kết hôn" : "Chưa kết hôn"}`;
+      residence_type.innerHTML = `${data.residence_type}` ? "Thành thị" : "Nông thôn";
+
+      switch (`${data.work_type}`) {
+        case "govt_job":
+          work_type.innerHTML = "Công việc nhà nước";
+          break;
+        case "privated":
+          work_type.innerHTML = "Tư nhân";
+          break;
+        case "children":
+          work_type.innerHTML = "Còn đi học/trẻ em";
+          break;
+        case "Never_worked":
+          work_type.innerHTML = "Chưa đi làm";
+          break;
+        case "Self_employed":
+          work_type.innerHTML = "Làm việc tự do";
+          break;
+      }
+
+      switch (`${data.smoking_status}`) {
+        case "formerly_smoked":
+          smoking_status.innerHTML = "Đã từng hút trước đây";
+          break;
+        case "never_smoked":
+          smoking_status.innerHTML = "Chưa từng hút thuốc";
+          break;
+        case "smokes":
+          smoking_status.innerHTML = "Đang hút thuốc";
+          break;
+      }
+
+      avg_glucose_level.innerHTML = `${data.avg_glucose_level}`;
+      bmi.innerHTML = `${data.bmi}`;
+      stroke.innerText = `${
+        data.stroke
+          ? "Bạn có nguy cơ bị đột quỵ, hãy nhận thêm các lời khuyên từ bác sĩ❗"
+          : "Bạn không có nguy cơ bị đột quỵ, hãy tiếp tục giữ gìn sức khỏe tốt ❤️"
+      }`;
+
+      percentageStroke.innerText = `${data.percentageStroke.toFixed(2)}%`;
+      let rotateDegree = (data.bmi - 16) * 6.4;
+      let animateTransform = document.getElementById("animateTransform");
+      animateTransform.setAttribute("to", rotateDegree + " 140 140");
+      animateTransform.beginElement();
+
+      data.stroke
+        ? (stroke.style.backgroundColor = "var(--bs-danger-bg-subtle)")
+        : (stroke.style.backgroundColor = "var(--bs-success-bg-subtle)");
+
+      const bmiScaleResult = document.getElementById("calculate-result");
+      bmiScaleResult.textContent = `BMI =  ${data.bmi}`;
+    }
+  };
+</script>
 
 <script src="{{url_for('static', filename='data-input.js')}}"></script>
 

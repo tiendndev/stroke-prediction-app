@@ -22,7 +22,7 @@ def form():
     if request.method == "POST":
         user_id = current_user.id
         if (db.session.query(Note.id).filter_by(user_id=user_id).first()):
-            flash("You submitted data!", category="error")
+            flash("Bạn đã nhập dữ liệu rồi!", category="error")
             return redirect(url_for("views.RetrivePatient"))
         # Lay noi dung tu input[name="fullname"],...
         fullname = request.form.get("fullname")
@@ -141,14 +141,9 @@ def form():
         # Them vao databse
         db.session.add(new_note)
         db.session.commit()
-        flash("Note added!", category="success")
+        flash("Thêm thành công!", category="success")
 
     return render_template("form.html", user=current_user)
-
-
-@views.route("/data", methods=["GET", "DELETE"])
-def RetrivePatient():
-    return render_template("views.html", user=current_user)
 
 
 @views.route("/image", methods=["POST", "GET"])
@@ -161,17 +156,6 @@ def VGG16():
         img_url = load_predict[1]
 
     return render_template("image.html", user=current_user, prediction=prediction, img_url=img_url)
-
-
-@views.route("/chatbot", methods=["GET", "POST"])
-def gpt():
-    if request.method == 'POST':
-        prompt = request.form['prompt']
-
-        res = {}
-        res['answer'] = aiapi.generateChatResponse(prompt)
-        return jsonify(res), 200
-    return render_template("gpt.html", user=current_user, **locals())
 
 
 @views.route("/setting", methods=["POST", "GET"])

@@ -13,7 +13,8 @@ from .services import (
     event_index_service,
     event_insert_service,
     event_update_service,
-    event_ajax_delete_service
+    event_ajax_delete_service,
+    gpt_service
 )
 
 symptoms = Blueprint("symptoms", __name__)
@@ -94,3 +95,8 @@ def event_update():
 @symptoms.route("/calendar/ajax_delete", methods=["POST"])
 def event_ajax_delete():
     return event_ajax_delete_service()
+
+
+@symptoms.route("/gpt", methods=["GET", "POST"])
+def event_gpt():
+    return gpt_service()

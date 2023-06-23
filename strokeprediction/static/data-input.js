@@ -41,7 +41,7 @@ $("#submit").click(function () {
       "background",
       "linear-gradient(to bottom right, #27939D, #07658F)"
     );
-    $("#bmid").html("Underweight");
+    $("#bmid").html("Thiếu cân");
   } else if (18.5 <= bmi && bmi <= 24.9) {
     //Normal weight
     $(".result-text").css(
@@ -60,7 +60,7 @@ $("#submit").click(function () {
       "background",
       "linear-gradient(to bottom right, #4FD24D, #4CA456)"
     );
-    $("#bmid").html("Normal");
+    $("#bmid").html("Bình thường");
   } else if (25 <= bmi && bmi <= 29.9) {
     //Overweight
     $(".result-text").css(
@@ -79,7 +79,7 @@ $("#submit").click(function () {
       "background",
       "linear-gradient(to bottom right, #EF7532, #DC3A26)"
     );
-    $("#bmid").html("Overweight");
+    $("#bmid").html("Thừa cân");
   } else {
     //Obese
     $(".result-text").css(
@@ -98,9 +98,8 @@ $("#submit").click(function () {
       "background",
       "linear-gradient(to bottom right, #F73946, #FF3875)"
     );
-    $("#bmid").html("Obese");
+    $("#bmid").html("Béo phì");
   }
-  console.log(bmi);
 });
 
 $('input[type="range"]').change(function () {

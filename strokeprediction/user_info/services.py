@@ -3,6 +3,7 @@ from flask import render_template, request, jsonify
 from flask_login import current_user
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash
+from strokeprediction import aiapi
 
 from strokeprediction.extension import db
 from strokeprediction.library_ma import SymptomSchema
@@ -206,3 +207,12 @@ def event_ajax_delete_service():
         else:
             msg = 'Record not found'
         return jsonify(msg)
+    
+
+def gpt_service():
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        res = {}
+        res['answer'] = aiapi.generateChatResponse(prompt)
+        return jsonify(res), 200
+    return render_template("form.html", user=current_user, **locals())

@@ -32,7 +32,7 @@
         selectable: true,
         selectHelper: true,
         select: function(start, end, allDay) {
-          var title = prompt("Enter Event Title");
+          var title = prompt("Nhập tiêu đề sự kiện");
           if(title) {
             var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
             var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
@@ -41,7 +41,7 @@
               type:"POST",
               data:{title:title, start:start, end:end},
               success:function(data) {
-                alert("Added Successfully");
+                alert("Thêm sự kiện thành công");
                 window.location.replace("/calendar");
               }
             })
@@ -60,7 +60,7 @@
             data: { title:title, start:start, end:end, id:id },
             success:function() {
               calendar.fullCalendar('refetchEvents');
-              alert('Event Update');
+              alert('Sự kiện đã cập nhật');
             }
           })
         },
@@ -76,13 +76,13 @@
             data:{ title:title, start:start, end:end, id:id },
             success:function() {
               calendar.fullCalendar('refetchEvents');
-              alert("Event Updated");
+              alert("Sự kiện đã cập nhật");
             }
           });
         },
 
         eventClick: function(event) {
-          if(confirm("Are you sure you want to remove it?")) {
+          if(confirm("Bạn có chắc chắn muốn xóa không?")) {
             var id = event.id;
             $.ajax({
               url: "/calendar/ajax_delete",
@@ -90,7 +90,7 @@
               data: { id:id },
               success:function() {
                 calendar.fullCalendar('refetchEvents');
-                alert("Event Removed");
+                alert("Sự kiện đã được xóa");
                 window.location.replace("/calendar");
               }
             })
@@ -100,15 +100,11 @@
     });
 </script>
 
-<div class="container">
+<div class="form-container">
   <br />
-  <h2 align="center">
-    <a href="#">Patient Health Calendar</a>
-    <br />
-    <a href="#">You can set your daily event for better health</a>
-  </h2>
+  <h2 align="center" class="mt-lg-5 mb-sm-5">Patient Health Calendar<br>Bạn có thể ghi chú lịch sức khỏe để có cuộc sống lành mạnh hơn</h2>
   <br />
-  <div class="container">
+  <div class="form-container">
     <div id="calendar"></div>
   </div>
 </div>

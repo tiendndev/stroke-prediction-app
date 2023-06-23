@@ -126,7 +126,7 @@ input[type="range"]::-ms-thumb {
 .label-height:after {
   content: " cm";
   font-size: 0.5em;
-  color: #4e5279;
+  color: #999;
   font-weight: 400;
   text-align: center;
   margin-top: -12px;
@@ -135,7 +135,7 @@ input[type="range"]::-ms-thumb {
 .label-weight:after {
   content: " kg";
   font-size: 0.5em;
-  color: #4e5279;
+  color: #999;
   font-weight: 400;
 }
 
