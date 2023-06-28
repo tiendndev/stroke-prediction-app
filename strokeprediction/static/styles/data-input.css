@@ -165,3 +165,9 @@ input[type="range"]::-ms-thumb {
   color: #fff;
   outline: none;
 }
+
+/* 3D Chart */
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}

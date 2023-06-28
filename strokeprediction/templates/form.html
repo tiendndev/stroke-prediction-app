@@ -3,72 +3,36 @@
 <link rel="stylesheet" href="{{url_for('static', filename='styles/data-input.css')}}" />
 
 <div class="form-container">
-  <h2 class="mt-lg-5 mb-sm-5"><br />Nhập đầy đủ thông tin dưới đây để chẩn đoán</h2>
+
+  <br>
+  <div class="row mt-5 mb-5 bg-info p-3 mx-2 rounded-3">
+    <div class="col-3 d-flex align-items-center">
+      <img src="{{url_for('static', filename='assets/img/form-logo.jpg')}}"
+        alt="Responsive image" class="img-thumbnail" />
+    </div>
+    <h2 class="col d-flex align-items-center">CHẨN ĐOÁN ĐỘT QUỴ</h2>
+  </div>
+
   <form action="" method="post">
     <div class="row mb-3">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <label for="exampleFormControlInput1" class="form-label">Họ và tên</label>
-        <input type="text" name="fullname" class="form-control" id="exampleFormControlInput1" placeholder="Nhập tên..." required />
+        <input type="text" name="fullname" class="form-control"
+          id="exampleFormControlInput1" placeholder="Nhập tên..." required />
       </div>
-      <div class="col-md-6">
+      <div class="col-md">
         <label for="exampleFormControlInput1" class="form-label">Tuổi</label>
-        <input type="number" name="age" class="form-control" id="exampleFormControlInput1" placeholder="Nhập tuổi..." required />
+        <input type="number" name="age" class="form-control" id="exampleFormControlInput1"
+          placeholder="Nhập tuổi..." required />
       </div>
     </div>
 
     <div class="row">
       <div class="input-group mb-3 col-6">
-        <label class="input-group-text" for="specificSizeSelect">Giới tính</label>
-        <select class="form-select col-6" id="specificSizeSelect" name="gender" required>
-          <option selected>Chọn...</option>
-          <option value="male">Nam</option>
-          <option value="female">Nữ</option>
-        </select>
-      </div>
-
-      <div class="input-group mb-3 col-6">
-        <label class="input-group-text" for="specificSizeSelect">Huyết áp</label>
-        <select class="form-select col-6" id="specificSizeSelect" name="hypertension" required>
-          <option selected>Chọn...</option>
-          <option value="1">Có</option>
-          <option value="0">Không</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-group mb-3 col-6">
-        <label class="input-group-text" for="specificSizeSelect">Bệnh tim</label>
-        <select class="form-select col-5" id="specificSizeSelect" name="heart_disease" required>
-          <option selected>Chọn...</option>
-          <option value="1">Có</option>
-          <option value="0">Không</option>
-        </select>
-      </div>
-
-      <div class="input-group mb-3 col-6">
-        <label class="input-group-text" for="specificSizeSelect">Tình trạng hôn nhân</label>
-        <select class="form-select col-6" id="specificSizeSelect" name="ever_married" required>
-          <option selected>Chọn...</option>
-          <option value="1">Đã kết hôn</option>
-          <option value="0">Chưa kết hôn</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-group mb-3 col-6">
-        <label class="input-group-text" for="specificSizeSelect">Khu vực sinh sống</label>
-        <select class="form-select col-5" id="specificSizeSelect" name="residence_type" required>
-          <option selected>Chọn...</option>
-          <option value="urban">Thành thị</option>
-          <option value="rural">Nông thôn</option>
-        </select>
-      </div>
-
-      <div class="input-group mb-3 col-6">
-        <label class="input-group-text" for="specificSizeSelect">Loại hình công việc</label>
-        <select class="form-select col-6" id="specificSizeSelect" name="work_type" required>
+        <label class="input-group-text" for="specificSizeSelect">Loại hình công
+          việc</label>
+        <select class="form-select col-6" id="specificSizeSelect" name="work_type"
+          required>
           <option selected>Chọn...</option>
           <option value="privated">Tư nhân</option>
           <option value="self_employed">Làm việc tự do</option>
@@ -79,10 +43,12 @@
       </div>
     </div>
 
-    <div class="row g-3">
+    <div class="row">
       <div class="input-group mb-3 col-6">
-        <label class="input-group-text" for="specificSizeSelect">Tình trạng hút thuốc</label>
-        <select class="form-select col-6" id="specificSizeSelect" name="smoking_status" required>
+        <label class="input-group-text" for="specificSizeSelect">Tình trạng hút
+          thuốc</label>
+        <select class="form-select col-6" id="specificSizeSelect" name="smoking_status"
+          required>
           <option selected>Chọn...</option>
           <option value="formerly_smoked">Đã từng hút trước đây</option>
           <option value="never_smoked">Chưa bao giờ hút thuốc</option>
@@ -90,88 +56,146 @@
         </select>
       </div>
 
-      <div class="col-sm">
-        <label class="visually-hidden" for="autoSizingInput">Lượng đường trung bình trong máu</label>
-        <input
-          type="number"
-          step="0.001"
-          class="form-control"
-          id="autoSizingInput"
-          placeholder="Lượng đường trung bình trong máu..."
-          name="avg_glucose_level"
+      <div class="col-sm-8">
+        <label class="visually-hidden" for="autoSizingInput">Lượng đường trung bình trong
+          máu</label>
+        <input type="number" step="0.001" class="form-control" id="autoSizingInput"
+          placeholder="Lượng đường trung bình trong máu..." name="avg_glucose_level"
           required />
       </div>
 
       <div class="col-sm">
         <label class="visually-hidden" for="autoSizingInput">BMI</label>
-        <input type="number" step="0.001" class="form-control" id="autoSizingInput" placeholder="Your BMI..." name="bmi" required />
+        <input type="number" step="0.001" class="form-control" id="autoSizingInput"
+          placeholder="Nhập BMI..." name="bmi" required />
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary col-xs-2 mt-3 pull-right">Dự đoán</button>
+    <div class="row mt-3">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Giới tính</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="gender"
+            id="flexRadioDefault1" value="male">
+          <label class="form-check-label" for="flexRadioDefault1">Nam</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="gender"
+            id="flexRadioDefault2" checked value="female">
+          <label class="form-check-label" for="flexRadioDefault2">Nữ</label>
+        </div>
+      </div>
+
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Huyết áp</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="hypertension"
+            id="flexRadioDefault1" value="1">
+          <label class="form-check-label" for="flexRadioDefault1">Có</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="hypertension"
+            id="flexRadioDefault2" checked value="0">
+          <label class="form-check-label" for="flexRadioDefault2">Không</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Bệnh tim</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="heart_disease"
+            id="flexRadioDefault1" value="1">
+          <label class="form-check-label" for="flexRadioDefault1">Có</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="heart_disease"
+            id="flexRadioDefault2" checked value="0">
+          <label class="form-check-label" for="flexRadioDefault2">Không</label>
+        </div>
+      </div>
+
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Hôn nhân</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="ever_married"
+            id="flexRadioDefault1" value="1">
+          <label class="form-check-label" for="flexRadioDefault1">Đã kết hôn</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="ever_married"
+            id="flexRadioDefault2" checked value="0">
+          <label class="form-check-label" for="flexRadioDefault2">Chưa kết hôn</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Nơi sinh sống</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="residence_type"
+            id="flexRadioDefault1" value="urban">
+          <label class="form-check-label" for="flexRadioDefault1">Thành thị</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="residence_type"
+            id="flexRadioDefault2" checked value="rural">
+          <label class="form-check-label" for="flexRadioDefault2">Nông thôn</label>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary col-xs-2 mt-3 mb-3 pull-right">Dự
+      đoán</button>
   </form>
 
-  <div class="bmi-calculator">
-    <div class="result">
-      <div class="result-text">
-        <h1><span id="bmiValue">24.8 </span>kg/m2</h1>
-        <small id="bmid">Bình thường</small>
-      </div>
-    </div>
-    <div class="calculator">
-      <h2 class="text-center calculator-title">Bạn có thể tính chỉ số BMI tại đây</h2>
-      <hr class="calculator-hr" />
-      <div class="height">
-        <input class="value_range" id="height" type="range" value="182" min="100" max="250" step="1" />
-        <div class="label-height field-text">0</div>
-      </div>
-      <div class="weight">
-        <input class="value_range" id="weight" type="range" value="82" min="0" max="250" step="1" />
-        <div class="label-weight field-text">0</div>
-      </div>
-      <div class="submit">
-        <input class="submit" type="submit" id="submit" value="Tính toán" />
-      </div>
-    </div>
-  </div>
   <div class="form-container">
-    <h2 class="mt-lg-5 mb-sm-3" class="font-weight-bold">Dự đoán bệnh đột quỵ</h2>
-    <p class="mb-sm-3">
-      Ứng dụng này sử dụng nhiều thuật toán AI khác nhau để chỉ ra nguy cơ đột quỵ. Nếu nghi ngờ đột quỵ, hãy nhanh chóng đến bác
-      sĩ.
-    </p>
-    <p class="mb-sm-3">Đã dự đoán xong</p>
-    <p>Tỉ lệ nguy cơ bị đột quỵ của bạn là:</p>
+    <h2 class="mt-lg-5 mb-sm-3" class="font-weight-bold" align="center">Kết quả dự đoán
+    </h2>
+    <div class="show-predict-title"></div>
     <h2 id="percentageStroke"></h2>
+
+    <!-- 3D Chart -->
+    <div id="chartdiv"></div>
 
     <div class="bmi-sumary row align-items-center">
       <div class="bmi-scale col" align="center">
-        <p class="mb-4"><strong>BMI:</strong></p>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="300px"
-          height="163px"
-          viewBox="0 0 300 163">
-          <g transform="translate(18,18)" style="font-family: arial, helvetica, sans-serif; font-size: 12px">
+        <text id="calculate-result" x="67" y="120"
+          style="font-size: 30px; font-weight: bold; color: #000"></text>
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="300px" height="163px" viewBox="0 0 300 163">
+          <g transform="translate(18,18)"
+            style="font-family: arial, helvetica, sans-serif; font-size: 12px">
             <defs>
-              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5"
+                orient="auto">
                 <polygon points="0 0, 10 3.5, 0 7"></polygon>
               </marker>
-              <path id="curvetxt1" d="M-4 140 A140 140, 0, 0, 1, 284 140" style="fill: none"></path>
+              <path id="curvetxt1" d="M-4 140 A140 140, 0, 0, 1, 284 140"
+                style="fill: none"></path>
               <path id="curvetxt2" d="M33 43.6 A140 140, 0, 0, 1, 280 140"></path>
               <path id="curvetxt3" d="M95 3 A140 140, 0, 0, 1, 284 140"></path>
               <path id="curvetxt4" d="M235.4 33 A140 140, 0, 0, 1, 284 140"></path>
             </defs>
             <path d="M0 140 A140 140, 0, 0, 1, 6.9 96.7 L140 140 Z" fill="#bc2020"></path>
-            <path d="M6.9 96.7 A140 140, 0, 0, 1, 12.1 83.1 L140 140 Z" fill="#d38888"></path>
-            <path d="M12.1 83.1 A140 140, 0, 0, 1, 22.6 63.8 L140 140 Z" fill="#ffe400"></path>
-            <path d="M22.6 63.8 A140 140, 0, 0, 1, 96.7 6.9 L140 140 Z" fill="#008137"></path>
-            <path d="M96.7 6.9 A140 140, 0, 0, 1, 169.1 3.1 L140 140 Z" fill="#ffe400"></path>
-            <path d="M169.1 3.1 A140 140, 0, 0, 1, 233.7 36 L140 140 Z" fill="#d38888"></path>
-            <path d="M233.7 36 A140 140, 0, 0, 1, 273.1 96.7 L140 140 Z" fill="#bc2020"></path>
-            <path d="M273.1 96.7 A140 140, 0, 0, 1, 280 140 L140 140 Z" fill="#8a0101"></path>
-            <path d="M45 140 A90 90, 0, 0, 1, 230 140 Z" fill="#fff"></path>
+            <path d="M6.9 96.7 A140 140, 0, 0, 1, 12.1 83.1 L140 140 Z" fill="#d38888">
+            </path>
+            <path d="M12.1 83.1 A140 140, 0, 0, 1, 22.6 63.8 L140 140 Z" fill="#ffe400">
+            </path>
+            <path d="M22.6 63.8 A140 140, 0, 0, 1, 96.7 6.9 L140 140 Z" fill="#008137">
+            </path>
+            <path d="M96.7 6.9 A140 140, 0, 0, 1, 169.1 3.1 L140 140 Z" fill="#ffe400">
+            </path>
+            <path d="M169.1 3.1 A140 140, 0, 0, 1, 233.7 36 L140 140 Z" fill="#d38888">
+            </path>
+            <path d="M233.7 36 A140 140, 0, 0, 1, 273.1 96.7 L140 140 Z" fill="#bc2020">
+            </path>
+            <path d="M273.1 96.7 A140 140, 0, 0, 1, 280 140 L140 140 Z" fill="#8a0101">
+            </path>
+            <path d="M45 140 A90 90, 0, 0, 1, 230 140 Z" fill="#f2f2f2"></path>
             <circle cx="140" cy="140" r="5" fill="#333"></circle>
             <g style="paint-order: stroke; stroke: #fff; stroke-width: 2px">
               <text x="25" y="111" transform="rotate(-72, 25, 111)">16</text>
@@ -183,31 +207,33 @@
               <text x="252" y="95" transform="rotate(72, 252, 95)">40</text>
             </g>
             <g style="font-size: 14px" class="text-chart-mode">
-              <text><textPath xlink:href="#curvetxt1" fill="#fff">Thiếu cân</textPath></text>
-              <text><textPath xlink:href="#curvetxt2" fill="#fff">Lý tưởng</textPath></text>
-              <text><textPath xlink:href="#curvetxt3" fill="#fff">Thừa cân</textPath></text>
-              <text><textPath xlink:href="#curvetxt4" fill="#fff">Béo phì</textPath></text>
+              <text>
+                <textPath xlink:href="#curvetxt1" fill="#000">Thiếu cân</textPath>
+              </text>
+              <text>
+                <textPath xlink:href="#curvetxt2" fill="#000">Lý tưởng</textPath>
+              </text>
+              <text>
+                <textPath xlink:href="#curvetxt3" fill="#000">Thừa cân</textPath>
+              </text>
+              <text>
+                <textPath xlink:href="#curvetxt4" fill="#000">Béo phì</textPath>
+              </text>
             </g>
-            <line id="line" x1="140" y1="140" x2="65" y2="140" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)">
-              <animateTransform
-                id="animateTransform"
-                attributeName="transform"
-                attributeType="XML"
-                type="rotate"
-                from="0 140 140"
-                to="0 140 140"
-                dur="1s"
-                fill="freeze"
-                repeatCount="1"></animateTransform>
+            <line id="line" x1="140" y1="140" x2="65" y2="140" stroke="#666"
+              stroke-width="2" marker-end="url(#arrowhead)">
+              <animateTransform id="animateTransform" attributeName="transform"
+                attributeType="XML" type="rotate" from="0 140 140" to="0 140 140" dur="1s"
+                fill="freeze" repeatCount="1"></animateTransform>
             </line>
-            <text id="calculate-result" x="67" y="120" style="font-size: 30px; font-weight: bold; color: #000"></text>
           </g>
         </svg>
       </div>
 
-      <div class="bmi-table col" align="center">
+      <!-- <div class="bmi-table col" align="center">
         <p class="text-bg-info">
-          Đây là trọng lượng cơ thể được Tổ chức Y tế Thế giới (WHO) khuyến nghị dựa trên giá trị BMI cho người trưởng thành. Nó
+          Đây là trọng lượng cơ thể được Tổ chức Y tế Thế giới (WHO) khuyến nghị dựa trên
+          giá trị BMI cho người trưởng thành. Nó
           được sử dụng cho cả nam và nữ, từ 20 tuổi trở lên.
         </p>
         <table class="table table-bordered" align="center">
@@ -250,7 +276,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
     </div>
 
     <div class="data-container mt-4">
@@ -369,6 +395,7 @@
   const bmi = $("td#bmi");
   const stroke = $("td#stroke");
   const percentageStroke = $("#percentageStroke");
+  const showPredictTitle = $(".show-predict-title");
 
   const showData = (data) => {
     if (data) {
@@ -379,6 +406,10 @@
       heart_disease.innerHTML = `${data.heart_disease ? "Có" : "Không"}`;
       ever_married.innerHTML = `${data.ever_married ? "Đã kết hôn" : "Chưa kết hôn"}`;
       residence_type.innerHTML = `${data.residence_type}` ? "Thành thị" : "Nông thôn";
+      showPredictTitle.innerHTML = `<p class="mb-sm-3">Đã dự đoán xong</p><p>` + `${data.stroke
+        ? "<h3 class='text-danger'>Bạn có nguy cơ bị đột quỵ❗</h3>"
+        : "<h3 class='text-success'>Bạn không có nguy cơ bị đột quỵ ❤️</h3>"
+        }` + `Tỉ lệ nguy cơ bị đột quỵ của bạn là:</p>`;
 
       switch (`${data.work_type}`) {
         case "govt_job":
@@ -390,10 +421,10 @@
         case "children":
           work_type.innerHTML = "Còn đi học/trẻ em";
           break;
-        case "Never_worked":
+        case "never_worked":
           work_type.innerHTML = "Chưa đi làm";
           break;
-        case "Self_employed":
+        case "self_employed":
           work_type.innerHTML = "Làm việc tự do";
           break;
       }
@@ -412,11 +443,10 @@
 
       avg_glucose_level.innerHTML = `${data.avg_glucose_level}`;
       bmi.innerHTML = `${data.bmi}`;
-      stroke.innerText = `${
-        data.stroke
-          ? "Bạn có nguy cơ bị đột quỵ, hãy nhận thêm các lời khuyên từ bác sĩ❗"
-          : "Bạn không có nguy cơ bị đột quỵ, hãy tiếp tục giữ gìn sức khỏe tốt ❤️"
-      }`;
+      stroke.innerText = `${data.stroke
+        ? "Bạn có nguy cơ bị đột quỵ, hãy nhận thêm các lời khuyên từ bác sĩ❗"
+        : "Bạn không có nguy cơ bị đột quỵ, hãy tiếp tục giữ gìn sức khỏe tốt ❤️"
+        }`;
 
       percentageStroke.innerText = `${data.percentageStroke.toFixed(2)}%`;
       let rotateDegree = (data.bmi - 16) * 6.4;
@@ -431,8 +461,75 @@
       const bmiScaleResult = document.getElementById("calculate-result");
       bmiScaleResult.textContent = `BMI =  ${data.bmi}`;
     }
+
+    // 3D Chart
+
+    // Themes begin
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+
+    // Create chart instance
+    var chart = am4core.create("chartdiv", am4charts.XYChart3D);
+
+    // Add data
+    chart.data = [{
+      "predict": "Đột quỵ",
+      "strokePercentage": data.percentageStroke.toFixed(2)
+    }, {
+      "predict": "Bình thường",
+      "strokePercentage": (100 - data.percentageStroke.toFixed(2))
+    }];
+
+    // Create axes
+    let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "predict";
+    categoryAxis.renderer.labels.template.rotation = 270;
+    categoryAxis.renderer.labels.template.hideOversized = false;
+    categoryAxis.renderer.minGridDistance = 20;
+    categoryAxis.renderer.labels.template.horizontalCenter = "right";
+    categoryAxis.renderer.labels.template.verticalCenter = "middle";
+    categoryAxis.tooltip.label.rotation = 270;
+    categoryAxis.tooltip.label.horizontalCenter = "right";
+    categoryAxis.tooltip.label.verticalCenter = "middle";
+
+    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.title.text = "Phần trăm dự đoán đột quỵ (%)";
+    valueAxis.title.fontWeight = "bold";
+
+    // Create series
+    var series = chart.series.push(new am4charts.ColumnSeries3D());
+    series.dataFields.valueY = "strokePercentage";
+    series.dataFields.categoryX = "predict";
+    series.name = "strokePercentage";
+    series.tooltipText = "{categoryX}: [bold]{valueY}%[/]";
+    series.columns.template.fillOpacity = .8;
+
+    var columnTemplate = series.columns.template;
+    columnTemplate.strokeWidth = 2;
+    columnTemplate.strokeOpacity = 1;
+    columnTemplate.stroke = am4core.color("#FFFFFF");
+
+    columnTemplate.adapter.add("fill", (fill, target) => {
+      return chart.colors.getIndex(target.dataItem.index);
+    })
+
+    columnTemplate.adapter.add("stroke", (stroke, target) => {
+      return chart.colors.getIndex(target.dataItem.index);
+    })
+
+    chart.cursor = new am4charts.XYCursor();
+    chart.cursor.lineX.strokeOpacity = 0;
+    chart.cursor.lineY.strokeOpacity = 0;
   };
+
+
 </script>
+
+<!-- 3D Chart -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 
 <script src="{{url_for('static', filename='data-input.js')}}"></script>
 

@@ -23,7 +23,7 @@ def form():
         user_id = current_user.id
         if (db.session.query(Note.id).filter_by(user_id=user_id).first()):
             flash("Bạn đã nhập dữ liệu rồi!", category="error")
-            return redirect(url_for("views.RetrivePatient"))
+            return redirect(url_for("views.form"))
         # Lay noi dung tu input[name="fullname"],...
         fullname = request.form.get("fullname")
         age = int(request.form.get("age"))
@@ -161,3 +161,13 @@ def VGG16():
 @views.route("/setting", methods=["POST", "GET"])
 def setting():
     return render_template("setting.html", user=current_user)
+
+
+@views.route('/bmi', methods=["GET"])
+def bmi():
+    return render_template("bmi.html", user=current_user)
+
+
+@views.route('/dashboard', methods=["GET"])
+def dashboard():
+    return render_template("dashboard.html", user=current_user)

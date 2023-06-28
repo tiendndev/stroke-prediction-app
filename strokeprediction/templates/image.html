@@ -22,7 +22,14 @@
 
 <div class="form-container">
   <form class="img-form" action="" method="post" enctype="multipart/form-data" name="file">
-    <h2 class="mt-lg-5 mb-sm-5">Tải ảnh CT não của bạn lên để dự đoán kết quả</h2>
+    <br>
+    <div class="row mt-5 mb-3 bg-info p-3 mx-2 rounded-3">
+      <div class="col-3 d-flex align-items-center">
+        <img src="{{url_for('static', filename='assets/img/logo.png')}}"
+          alt="Responsive image" class="img-thumbnail" />
+      </div>
+      <h2 class="col d-flex align-items-center">CHẨN ĐOÁN BỆNH ĐỘT QUỴ VỚI ẢNH CT NÃO</h2>
+    </div>
     <div class="row mb-3 image-example-container">
       <p class="col-6 text-info">Hãy tải ảnh CT Scan giống như ảnh mô tả bên phải để đạt được hiệu quả tốt nhất</p>
       <img src="../static/img/img99(4).jpg" alt="" class="ct-img-example col-6" />
@@ -93,27 +100,27 @@
         </p>`;
     }
 
-    const storedTheme = localStorage.getItem("theme");
-    const gptLayoutBg = document.querySelector(".app.gpt-layout");
-    const contentsBg = document.querySelector(".contents");
-    const formContainerBg = document.querySelector(".form-container");
-    const gptHideButtonBg = document.querySelector(".gpt-hide-button i");
+    // const storedTheme = localStorage.getItem("theme");
+    // const gptLayoutBg = document.querySelector(".app.gpt-layout");
+    // const contentsBg = document.querySelector(".contents");
+    // const formContainerBg = document.querySelector(".form-container");
+    // const gptHideButtonBg = document.querySelector(".gpt-hide-button i");
 
-    if (storedTheme == "light") {
-      html.setAttribute("data-bs-theme", storedTheme);
-      localStorage.setItem("theme", "light");
-      gptLayoutBg.classList.add("light-mode");
-      contentsBg.classList.add("light-mode");
-      formContainerBg.classList.add("light-mode");
-      gptHideButtonBg.style.color = "#000";
-    } else {
-      html.setAttribute("data-bs-theme", "dark");
-      localStorage.setItem("theme", "dark");
-      gptLayoutBg.classList.remove("light-mode");
-      contentsBg.classList.remove("light-mode");
-      formContainerBg.classList.remove("light-mode");
-      gptHideButtonBg.style.color = "#fff";
-    }
+    // if (storedTheme == "light") {
+    //   html.setAttribute("data-bs-theme", storedTheme);
+    //   localStorage.setItem("theme", "light");
+    //   gptLayoutBg.classList.add("light-mode");
+    //   contentsBg.classList.add("light-mode");
+    //   formContainerBg.classList.add("light-mode");
+    //   gptHideButtonBg.style.color = "#000";
+    // } else {
+    //   html.setAttribute("data-bs-theme", "dark");
+    //   localStorage.setItem("theme", "dark");
+    //   gptLayoutBg.classList.remove("light-mode");
+    //   contentsBg.classList.remove("light-mode");
+    //   formContainerBg.classList.remove("light-mode");
+    //   gptHideButtonBg.style.color = "#fff";
+    // }
   };
 </script>
 

@@ -88,6 +88,7 @@ body::before {
   overflow-x: hidden;
   padding-left: 10px;
   padding-right: 10px;
+  background-color: rgb(255 255 255 / 74%);
 }
 
 .video-bg {
@@ -155,9 +156,18 @@ label {
   overflow: hidden;
 }
 
+.rounded {
+  box-shadow: 2px 3px 20px rgba(0,0,0,0.3);
+}
+
 .gpt-hide-button {
   cursor: pointer;
   display: none;
+}
+
+img, svg {
+  vertical-align: middle;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.3));
 }
 
 .gpt-hide-button i {
@@ -475,6 +485,7 @@ button#gpt-button {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   margin-left: 20px;
+  background-color: rgb(255 255 255 / 74%);
 }
 
 .app:first-child {
@@ -564,6 +575,7 @@ button#gpt-button {
 
   .contents {
     flex-wrap: wrap;
+    overflow-y: scroll;
   }
 
   .l-navbar {
@@ -628,10 +640,6 @@ button#gpt-button {
 
 .modal-backdrop {
   z-index: 9;
-}
-
-.modal {
-  left: 112px;
 }
 
 .modal-header .close {

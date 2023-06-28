@@ -58,7 +58,7 @@
                     Cài đặt
                   </a>
                 </div>
-                <div class="menu-item">
+                <!-- <div class="menu-item">
                   <p>
                     <i class="bx bx-moon"></i>
                     Chế độ
@@ -73,7 +73,7 @@
                       Tối
                     </li>
                   </ul>
-                </div>
+                </div> -->
                 <div class="menu-item">
                   <a href="/">
                     <i class="bx bxs-home"></i>
@@ -93,7 +93,7 @@
             <nav class="nav">
               <div>
                 <!-- Logo -->
-                <a href="#" class="nav_logo">
+                <a href="/dashboard" class="nav_logo">
                   <i class="bx bx-layer nav_logo-icon"></i>
                   <span class="nav_logo-name">Giao diện chính</span>
                 </a>
@@ -107,9 +107,13 @@
                     <i class="bx bx-image-add nav_icon"></i>
                     <span class="nav_name">Dự đoán ảnh CT</span>
                   </a>
+                  <a href="/bmi" class="nav_link">
+                    <i class="bx bx-calculator nav_icon"></i>
+                    <span class="nav_name">Tính BMI</span>
+                  </a>
                   <a href="/calendar" class="nav_link">
                     <i class="bx bx-calendar nav_icon"></i>
-                    <span class="nav_name">Lịch sức khỏe</span>
+                    <span class="nav_name">Sổ sức khỏe</span>
                   </a>
                 </div>
               </div>
@@ -247,38 +251,38 @@
         headerMenu.classList.toggle("menu-active");
       };
 
-      const darkMode = document.querySelector(".dark-mode-button");
-      const lightMode = document.querySelector(".light-mode-button");
-      const gptLayoutBg = document.querySelector(".app.gpt-layout");
-      const contentsBg = document.querySelector(".contents");
-      const formContainerBg = document.querySelector(".form-container");
-      const gptHideButtonBg = document.querySelector('.gpt-hide-button i');
-      const textChartMode = document.querySelectorAll('.text-chart-mode text textPath');
+      // const darkMode = document.querySelector(".dark-mode-button");
+      // const lightMode = document.querySelector(".light-mode-button");
+      // const gptLayoutBg = document.querySelector(".app.gpt-layout");
+      // const contentsBg = document.querySelector(".contents");
+      // const formContainerBg = document.querySelector(".form-container");
+      // const gptHideButtonBg = document.querySelector('.gpt-hide-button i');
+      // const textChartMode = document.querySelectorAll('.text-chart-mode text textPath');
 
-      darkMode.onclick = () => {
-        html.setAttribute("data-bs-theme", "dark");
-        localStorage.setItem("theme", "dark");
-        gptLayoutBg.classList.remove("light-mode");
-        contentsBg.classList.remove("light-mode");
-        formContainerBg.classList.remove("light-mode");
-        gptHideButtonBg.style.color = "#000"
-        textChartMode.forEach((t) => {
-          t.setAttribute('fill', '#fff');
-        });
+      // darkMode.onclick = () => {
+      //   html.setAttribute("data-bs-theme", "dark");
+      //   localStorage.setItem("theme", "dark");
+      //   gptLayoutBg.classList.remove("light-mode");
+      //   contentsBg.classList.remove("light-mode");
+      //   formContainerBg.classList.remove("light-mode");
+      //   gptHideButtonBg.style.color = "#000"
+      //   textChartMode.forEach((t) => {
+      //     t.setAttribute('fill', '#fff');
+      //   });
 
-      };
+      // };
 
-      lightMode.onclick = () => {
-        html.setAttribute("data-bs-theme", "light");
-        localStorage.setItem("theme", "light");
-        gptLayoutBg.classList.add("light-mode");
-        contentsBg.classList.add("light-mode");
-        formContainerBg.classList.add("light-mode");
-        gptHideButtonBg.style.color = "#fff"
-        textChartMode.forEach((t) => {
-          t.setAttribute('fill', '#000');
-        });
-      };
+      // lightMode.onclick = () => {
+      //   html.setAttribute("data-bs-theme", "light");
+      //   localStorage.setItem("theme", "light");
+      //   gptLayoutBg.classList.add("light-mode");
+      //   contentsBg.classList.add("light-mode");
+      //   formContainerBg.classList.add("light-mode");
+      //   gptHideButtonBg.style.color = "#fff"
+      //   textChartMode.forEach((t) => {
+      //     t.setAttribute('fill', '#000');
+      //   });
+      // };
     </script>
     {% else %} {% block login %} {% endblock %} {% endif %}
 

@@ -42,9 +42,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
         l.classList.remove("active");
         linkColor[1].classList.add("active");
         break;
-        case "/calendar":
+        case "/bmi":
           l.classList.remove("active");
           linkColor[2].classList.add("active");
+          break;
+        case "/calendar":
+          l.classList.remove("active");
+          linkColor[3].classList.add("active");
           break;
       default:
         l.classList.remove("active");
