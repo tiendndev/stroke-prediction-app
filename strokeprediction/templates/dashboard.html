@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block title %}Dash board{% endblock %} {% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='styles/dashboard.css')}}" />
+
+<div class="form-container">
+
+    <br>
+    <br>
+
+    <div class="row mt-5">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <a href="/form" class="flip">
+                <div class="front"
+                    style="background-image: url(../static/assets/img/form-logo.jpg)">
+                    <h2 class="text-shadow text-black">Chỉ số</h2>
+                </div>
+                <div class="back">
+                    <h2>Bắt đầu</h2>
+                    <p>Chẩn đoán bệnh đột quỵ dựa trên các chỉ số cơ thể, các đặc điểm lâm
+                        sàng
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <a href="/image" class="flip flip-vertical">
+                <div class="front"
+                    style="background-image: url(../static/assets/img/ct-brain-logo.jpg)">
+                    <h2 class="text-shadow text-black">Hình ảnh</h2>
+                </div>
+                <div class="back">
+                    <h2>Bắt đầu</h2>
+                    <p>Dự đoán bệnh đột quỵ bằng ảnh chụp CT não</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <a href="/bmi" class="flip">
+                <div class="front"
+                    style="background-image: url(../static/assets/img/cal-logo.png)">
+                    <h2 class="text-shadow text-black">Tính BMI</h2>
+                </div>
+                <div class="back">
+                    <h2>Bắt đầu</h2>
+                    <p>Tính chỉ số BMI dựa trên cân nặng và chiều cao cơ thể</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <a href="/calendar" class="flip flip-vertical">
+                <div class="front"
+                    style="background-image: url(../static/assets/img/calendar-logo.jpg)">
+                    <h2 class="text-shadow text-black">Sổ sức khỏe</h2>
+                </div>
+                <div class="back">
+                    <h2>Bắt đầu</h2>
+                    <p>Ghi chú những thông tin quan trọng để theo dõi sức khỏe hằng ngày
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

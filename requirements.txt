@@ -1,0 +1,16 @@
+scikit-learn
+pillow
+openai
+joblib
+marshmallow-sqlalchemy
+tensorflow
+keras
+pymysql
+Flask-SQLAlchemy
+flask_marshmallow
+flask-login
+python-dotenv
+flask
+gunicorn==20.1.0
+waitress
+flask-mysqldb

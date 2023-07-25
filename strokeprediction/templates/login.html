@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Login Page{% endblock %}
+
+{% block login %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='styles/login.css')}}">
+
+<div class="video-bg">
+   <video width="320" height="240" autoplay loop muted>
+      <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+   </video>
+</div>
+
+<div class="login-container">
+
+   <!-- Flash message -->
+   {% with messages = get_flashed_messages(with_categories = true) %}
+   {% if messages %}
+   {% for cat, mess in messages %}
+   {% if cat == "error" %}
+   <div class="alert alert-danger" role="alert">
+      {{ mess }}
+      <button type="button" class="close" data-dismiss="alert">
+         <span aria-hidden="true" class="close-btn">&times;</span>
+      </button>
+   </div>
+   {% else %}
+   <div class="alert alert-success" role="alert">
+      {{ mess }}
+      <button type="button" class="close" data-dismiss="alert">
+         <span aria-hidden="true" class="close-btn">&times;</span>
+      </button>
+   </div>
+   {% endif %}
+   {% endfor %}
+   {% endif %}
+   {% endwith %}
+
+   <div class="login-box">
+
+      <h2 class="login-title">Login</h2>
+
+      <form action="" method="post">
+         <div class="user-box">
+            <input type="text" class="form-control" name="email" required>
+            <label for="email">Email</label>
+         </div>
+         <div class="user-box">
+            <input type="password" class="form-control" name="password" required>
+            <label for="password">Mật khẩu</label>
+         </div>
+         <button type="submit" class="btn">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Đăng nhập
+         </button>
+         <button class="btn pull-right">
+            <a href="/signup">Bạn chưa có tài khoản? Đăng ký</a>
+         </button>
+      </form>
+
+   </div>
+
+</div>
+
+{% endblock %}

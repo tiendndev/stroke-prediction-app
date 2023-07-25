@@ -1,0 +1,309 @@
+{% extends "base.html" %} {% block title %}Form Page{% endblock %}
+{% block content %}
+
+<link rel="stylesheet"
+  href="{{url_for('static', filename='styles/data-input.css')}}" />
+
+<div class="form-container">
+
+  <br>
+  <div class="row mt-5 mb-5 bg-info p-3 mx-2 rounded-3">
+    <div class="col-3 d-flex align-items-center">
+      <img src="{{url_for('static', filename='assets/img/form-logo.jpg')}}"
+        alt="Responsive image" class="img-thumbnail" />
+    </div>
+    <h2 class="col d-flex align-items-center">DỰ ĐOÁN ĐỘT QUỴ VỚI CHỈ SỐ LÂM SÀNG</h2>
+  </div>
+
+  <form action="" method="post">
+    <div class="row mb-3">
+      <div class="col-md-8">
+        <label for="exampleFormControlInput1" class="form-label">Họ và
+          tên</label>
+        <input type="text" name="fullname" class="form-control"
+          id="exampleFormControlInput1" placeholder="Nhập tên..." required />
+      </div>
+      <div class="col-md">
+        <label for="exampleFormControlInput1" class="form-label">Tuổi</label>
+        <input type="number" name="age" class="form-control"
+          id="exampleFormControlInput1" placeholder="Nhập tuổi..." required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Loại hình công
+          việc</label>
+        <select class="form-select col-6" id="specificSizeSelect"
+          name="work_type" required>
+          <option selected>Chọn...</option>
+          <option value="privated">Tư nhân</option>
+          <option value="self_employed">Làm việc tự do</option>
+          <option value="govt_job">Công việc nhà nước</option>
+          <option value="children">Còn đi học/trẻ em</option>
+          <option value="never_worked">Chưa đi làm</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Tình trạng hút
+          thuốc</label>
+        <select class="form-select col-6" id="specificSizeSelect"
+          name="smoking_status" required>
+          <option selected>Chọn...</option>
+          <option value="formerly_smoked">Đã từng hút trước đây</option>
+          <option value="never_smoked">Chưa bao giờ hút thuốc</option>
+          <option value="smokes">Đang hút thuốc</option>
+        </select>
+      </div>
+
+      <div class="col-sm-8">
+        <label class="visually-hidden" for="autoSizingInput">Lượng đường trung
+          bình trong
+          máu</label>
+        <input type="number" step="0.001" class="form-control"
+          id="autoSizingInput" placeholder="Lượng đường trung bình trong máu..."
+          name="avg_glucose_level" required />
+      </div>
+
+      <div class="col-sm">
+        <label class="visually-hidden" for="autoSizingInput">BMI</label>
+        <input type="number" step="0.001" class="form-control"
+          id="autoSizingInput" placeholder="Nhập BMI..." name="bmi" required />
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Giới
+          tính</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="gender"
+            id="flexRadioDefault2" value="female">
+          <label class="form-check-label" for="flexRadioDefault2">Nữ</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="gender"
+            id="flexRadioDefault1" checked value="male">
+          <label class="form-check-label" for="flexRadioDefault1">Nam</label>
+        </div>
+      </div>
+
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Huyết
+          áp</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="hypertension"
+            id="flexRadioDefault1" value="1">
+          <label class="form-check-label" for="flexRadioDefault1">Có</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="hypertension"
+            id="flexRadioDefault2" checked value="0">
+          <label class="form-check-label" for="flexRadioDefault2">Không</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Bệnh
+          tim</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="heart_disease"
+            id="flexRadioDefault1" value="1">
+          <label class="form-check-label" for="flexRadioDefault1">Có</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="heart_disease"
+            id="flexRadioDefault2" checked value="0">
+          <label class="form-check-label" for="flexRadioDefault2">Không</label>
+        </div>
+      </div>
+
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Hôn
+          nhân</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="ever_married"
+            id="flexRadioDefault2" value="0">
+          <label class="form-check-label" for="flexRadioDefault2">Chưa kết
+            hôn</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="ever_married"
+            id="flexRadioDefault1" checked value="1">
+          <label class="form-check-label" for="flexRadioDefault1">Đã kết
+            hôn</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-6">
+        <label class="input-group-text" for="specificSizeSelect">Nơi sinh
+          sống</label>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="residence_type"
+            id="flexRadioDefault1" value="urban">
+          <label class="form-check-label" for="flexRadioDefault1">Thành
+            thị</label>
+        </div>
+        <div class="form-check m-2">
+          <input class="form-check-input" type="radio" name="residence_type"
+            id="flexRadioDefault2" checked value="rural">
+          <label class="form-check-label" for="flexRadioDefault2">Nông
+            thôn</label>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit"
+      class="btn btn-primary col-xs-2 mt-3 mb-3 pull-right">Dự
+      đoán</button>
+  </form>
+
+  <div class="form-container">
+    <h2 class="mt-lg-5 mb-sm-3" class="font-weight-bold" align="center">Kết quả
+      dự đoán
+    </h2>
+    <div class="show-predict-title"></div>
+    <h2 id="percentageStroke" class="text-success"></h2>
+
+    <!-- 3D Chart -->
+    <div class="row align-items-center">
+      <div id="chartdiv"></div>
+    </div>
+
+    <!-- Zing Chart -->
+    <div class="row">
+
+      <div class="col-sm">
+        <div id='glucoseChart'>
+          <h3 class="p-2 text-center bg-info text-white mb-0">Đường huyết</h3>
+        </div>
+        <ul class="pie-chart__legend">
+          <li><em>Thấp</em><span>(0-90)</span></li>
+          <li><em>Lý tưởng</em><span>(90-160)</span></li>
+          <li><em>Cao</em><span>(160-230)</span></li>
+          <li><em>Rất cao</em><span>(>=230)</span></li>
+        </ul>
+        <p class="border border-info text-secondary p-2 bg-light"
+          id="glucose-advices"></p>
+      </div>
+
+      <div class="col-sm">
+        <div id='bmiChart'>
+          <h3 class="p-2 text-center bg-info text-white mb-0">BMI</h3>
+        </div>
+        <ul class="pie-chart__legend">
+          <li><em>Thiếu cân</em><span>(0-18)</span></li>
+          <li><em>Lý tưởng</em><span>(18-25)</span></li>
+          <li><em>Thừa cân</em><span>(25-30)</span></li>
+          <li><em>Béo phì</em><span>(>=30)</span></li>
+        </ul>
+        <p class="border border-info text-secondary p-2 bg-light"
+          id="bmi-advices"></p>
+      </div>
+
+    </div>
+
+    <!-- Zing Chart -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div id='ageChart'>
+          <h3 class="mt-5 mb-0 p-2 text-center bg-info text-white">Tuổi</h3>
+        </div>
+        <ul class="pie-chart__legend">
+          <li><em>Trẻ em</em><span>(0-13)</span></li>
+          <li><em>Thiếu niên</em><span>(13-18)</span></li>
+          <li><em>Trung niên</em><span>(18-45)</span></li>
+          <li><em>Trưởng thành</em><span>(45-60)</span></li>
+          <li><em>Cao tuổi</em><span>(>=60)</span></li>
+        </ul>
+        <p class="border border-info text-secondary p-2 bg-light"
+          id="age-advices"></p>
+      </div>
+    </div>
+
+    <div class="data-container mt-4">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Dữ liệu đã nhập</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Họ và tên</th>
+              <td id="fullname"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tuổi</th>
+              <td id="age"></td>
+            </tr>
+            <tr>
+              <th scope="row">Giới tính</th>
+              <td id="gender"></td>
+            </tr>
+            <tr>
+              <th scope="row">Huyết áp</th>
+              <td id="hypertension"></td>
+            </tr>
+            <tr>
+              <th scope="row">Bệnh tim</th>
+              <td id="heart_disease"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tình trạng hôn nhân</th>
+              <td id="ever_married"></td>
+            </tr>
+            <tr>
+              <th scope="row">Khu vực sinh sống</th>
+              <td id="residence_type"></td>
+            </tr>
+            <tr>
+              <th scope="row">Loại hình công việc</th>
+              <td id="work_type"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tình trạng hút thuốc</th>
+              <td id="smoking_status"></td>
+            </tr>
+            <tr>
+              <th scope="row">Lượng đường trung bình trong máu</th>
+              <td id="avg_glucose_level"></td>
+            </tr>
+            <tr>
+              <th scope="row">BMI</th>
+              <td id="bmi"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tình trạng đột quỵ</th>
+              <td id="stroke"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="action-btn"></div>
+  </div>
+</div>
+
+<!-- 3D Chart -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Zing Chart -->
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+<script src="{{url_for('static', filename='data-input.js')}}"
+  type="module"></script>
+
+{% endblock %}
