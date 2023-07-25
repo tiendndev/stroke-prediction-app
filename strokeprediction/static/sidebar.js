@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let render_route = window.location.href.slice(40);
 
   linkColor.forEach((l) => {
-    switch (local_route) {
+    switch (render_route) {
       case "/form":
         l.classList.remove("active");
         linkColor[0].classList.add("active");
