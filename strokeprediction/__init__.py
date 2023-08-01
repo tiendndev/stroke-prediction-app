@@ -22,7 +22,7 @@ def create_app():
     app.config["SECRET_KEY"] = SECRET_KEY
 
     # Khai bao duong dan chua database va khoi tao db
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:qMsNy6GDgOjLCg7p7a5v@containers-us-west-92.railway.app:5494/railway"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:Zw2lqle8rjNxYQ1z3DyW@containers-us-west-122.railway.app:6443/railway"
     db.init_app(app)
 
     """ Khoi tao api """
